@@ -1,0 +1,273 @@
+package runtime
+
+import (
+	"bytes"
+	"context"
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/obot-platform/nanobot/pkg/agents"
+	"github.com/obot-platform/nanobot/pkg/complete"
+	"github.com/obot-platform/nanobot/pkg/llm"
+	"github.com/obot-platform/nanobot/pkg/mcp"
+	"github.com/obot-platform/nanobot/pkg/mcp/auditlogs"
+	"github.com/obot-platform/nanobot/pkg/sampling"
+	"github.com/obot-platform/nanobot/pkg/servers/agent"
+	"github.com/obot-platform/nanobot/pkg/servers/artifacts"
+	"github.com/obot-platform/nanobot/pkg/servers/meta"
+	"github.com/obot-platform/nanobot/pkg/servers/obotmcp"
+	"github.com/obot-platform/nanobot/pkg/servers/skills"
+	"github.com/obot-platform/nanobot/pkg/servers/system"
+	"github.com/obot-platform/nanobot/pkg/servers/tasks"
+	"github.com/obot-platform/nanobot/pkg/servers/workflows"
+	"github.com/obot-platform/nanobot/pkg/session"
+	"github.com/obot-platform/nanobot/pkg/sessiondata"
+	"github.com/obot-platform/nanobot/pkg/tools"
+	"github.com/obot-platform/nanobot/pkg/types"
+)
+
+type Runtime struct {
+	*tools.Service
+	llmConfig  llm.Config
+	opt        Options
+	taskServer *tasks.Server
+}
+
+type Options struct {
+	Roots                         []mcp.Root
+	Profiles                      []string
+	MaxConcurrency                int
+	CallbackHandler               mcp.CallbackHandler
+	TokenStorage                  mcp.TokenStorage
+	OAuthRedirectURL              string
+	DSN                           string
+	Store                         *session.Store
+	TokenExchangeEndpoint         string
+	TokenExchangeClientID         string
+	TokenExchangeClientSecret     string
+	OAuthClientIDMetadataDocument string
+	AuditLogCollector             auditlogs.Collector
+	DefaultModel                  string
+	ConfigDir                     string
+	LoopbackURL                   string
+	BlockLoopback                 bool
+	BlockPrivateIP                bool
+	BlockLinkLocal                bool
+	AllowedHosts                  []string
+}
+
+func (o Options) Merge(other Options) (result Options) {
+	result.MaxConcurrency = complete.Last(o.MaxConcurrency, other.MaxConcurrency)
+	result.Profiles = append(o.Profiles, other.Profiles...)
+	result.Roots = append(o.Roots, other.Roots...)
+	result.CallbackHandler = complete.Last(o.CallbackHandler, other.CallbackHandler)
+	result.OAuthRedirectURL = complete.Last(o.OAuthRedirectURL, other.OAuthRedirectURL)
+	result.TokenStorage = complete.Last(o.TokenStorage, other.TokenStorage)
+	result.DSN = complete.Last(o.DSN, other.DSN)
+	result.Store = complete.Last(o.Store, other.Store)
+	result.TokenExchangeEndpoint = complete.Last(o.TokenExchangeEndpoint, other.TokenExchangeEndpoint)
+	result.TokenExchangeClientID = complete.Last(o.TokenExchangeClientID, other.TokenExchangeClientID)
+	result.TokenExchangeClientSecret = complete.Last(o.TokenExchangeClientSecret, other.TokenExchangeClientSecret)
+	result.OAuthClientIDMetadataDocument = complete.Last(o.OAuthClientIDMetadataDocument, other.OAuthClientIDMetadataDocument)
+	result.AuditLogCollector = complete.Last(o.AuditLogCollector, other.AuditLogCollector)
+	result.DefaultModel = complete.Last(o.DefaultModel, other.DefaultModel)
+	result.ConfigDir = complete.Last(o.ConfigDir, other.ConfigDir)
+	result.LoopbackURL = complete.Last(o.LoopbackURL, other.LoopbackURL)
+	result.BlockLoopback = o.BlockLoopback || other.BlockLoopback
+	result.BlockPrivateIP = o.BlockPrivateIP || other.BlockPrivateIP
+	result.BlockLinkLocal = o.BlockLinkLocal || other.BlockLinkLocal
+	result.AllowedHosts = append(append([]string{}, o.AllowedHosts...), other.AllowedHosts...)
+	return
+}
+
+func NewRuntime(ctx context.Context, cfg llm.Config, opts ...Options) (*Runtime, error) {
+	opt := complete.Complete(opts...)
+
+	if opt.TokenStorage == nil && opt.Store != nil {
+		opt.TokenStorage = opt.Store
+	}
+	if opt.TokenStorage == nil && opt.DSN != "" {
+		var err error
+		opt.TokenStorage, err = session.NewStoreFromDSN(opt.DSN)
+		if err != nil {
+			return nil, fmt.Errorf("failed to create session store: %w", err)
+		}
+	}
+
+	completer := llm.NewClient(cfg)
+	registry := tools.NewToolsService(tools.Options{
+		Roots:                         opt.Roots,
+		Concurrency:                   opt.MaxConcurrency,
+		CallbackHandler:               opt.CallbackHandler,
+		OAuthRedirectURL:              opt.OAuthRedirectURL,
+		TokenStorage:                  opt.TokenStorage,
+		TokenExchangeEndpoint:         opt.TokenExchangeEndpoint,
+		TokenExchangeClientID:         opt.TokenExchangeClientID,
+		TokenExchangeClientSecret:     opt.TokenExchangeClientSecret,
+		OAuthClientIDMetadataDocument: opt.OAuthClientIDMetadataDocument,
+		AuditLogCollector:             opt.AuditLogCollector,
+		BlockLoopback:                 opt.BlockLoopback,
+		BlockPrivateIP:                opt.BlockPrivateIP,
+		BlockLinkLocal:                opt.BlockLinkLocal,
+		AllowedHosts:                  opt.AllowedHosts,
+	})
+	agentsService := agents.New(completer, registry)
+	sampler := sampling.NewSampler(agentsService)
+
+	// This is a circular dependency. Oh well, so much for good design.
+	registry.SetSampler(sampler)
+
+	r := &Runtime{
+		Service:   registry,
+		llmConfig: cfg,
+		opt:       opt,
+	}
+
+	registry.AddServer("nanobot.meta", func(string) mcp.MessageHandler {
+		return meta.NewServer(sessiondata.NewData(r), opt.ConfigDir)
+	})
+
+	registry.AddServer("nanobot.agent", func(name string) mcp.MessageHandler {
+		return agent.NewServer(sessiondata.NewData(r), r, agentsService, name)
+	})
+
+	registry.AddServer("nanobot.system", func(string) mcp.MessageHandler {
+		return system.NewServer(opt.DefaultModel, opt.ConfigDir)
+	})
+
+	registry.AddServer("nanobot.workflows", func(string) mcp.MessageHandler {
+		return workflows.NewServer()
+	})
+
+	registry.AddServer("nanobot.workflow-tools", func(string) mcp.MessageHandler {
+		return workflows.NewToolsServer()
+	})
+
+	registry.AddServer("nanobot.artifacts", func(string) mcp.MessageHandler {
+		return artifacts.NewServer()
+	})
+
+	registry.AddServer("nanobot.skills", func(string) mcp.MessageHandler {
+		return skills.NewServer(opt.ConfigDir)
+	})
+
+	registry.AddServer("nanobot.obot-mcp-cli", func(string) mcp.MessageHandler {
+		return obotmcp.NewServer(opt.ConfigDir)
+	})
+
+	if opt.LoopbackURL != "" && opt.Store != nil {
+		taskServer, err := tasks.NewServer(ctx, opt.Store, opt.LoopbackURL)
+		if err != nil {
+			return nil, fmt.Errorf("failed to start task server: %w", err)
+		}
+		r.taskServer = taskServer
+		registry.AddServer("nanobot.tasks", func(string) mcp.MessageHandler {
+			return taskServer
+		})
+	}
+
+	return r, nil
+}
+
+func (r *Runtime) WithTempSession(ctx context.Context, config *types.Config) context.Context {
+	session := mcp.NewEmptySession(ctx)
+	session.Set(types.ConfigSessionKey, config)
+	return mcp.WithSession(types.WithConfig(ctx, *config), session)
+}
+
+func (r *Runtime) getToolFromRef(ctx context.Context, config types.Config, serverRef string) (*tools.ListToolsResult, error) {
+	var (
+		server, tool string
+	)
+
+	toolRef := strings.Split(serverRef, "/")
+	if len(toolRef) == 1 {
+		_, ok := config.Agents[toolRef[0]]
+		if ok {
+			server, tool = toolRef[0], toolRef[0]
+		} else {
+			server, tool = "", toolRef[0]
+		}
+	} else if len(toolRef) == 2 {
+		server, tool = toolRef[0], toolRef[1]
+	} else {
+		return nil, fmt.Errorf("invalid tool reference: %s", serverRef)
+	}
+
+	toolList, err := r.ListTools(ctx, tools.ListToolsOptions{
+		Servers: []string{server},
+		Tools:   []string{tool},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if len(toolList) != 1 || len(toolList[0].Tools) != 1 {
+		return nil, fmt.Errorf("found %d tools with name %s on server %s", len(toolList), tool, server)
+	}
+
+	return &tools.ListToolsResult{
+		Server: toolList[0].Server,
+		Tools:  []mcp.Tool{toolList[0].Tools[0]},
+	}, nil
+}
+
+func (r *Runtime) CallFromCLI(ctx context.Context, serverRef string, args ...string) (*mcp.CallToolResult, error) {
+	var (
+		argValue any
+		argMap   = map[string]string{}
+		config   = types.ConfigFromContext(ctx)
+	)
+
+	tools, err := r.getToolFromRef(ctx, config, serverRef)
+	if err != nil {
+		return nil, err
+	}
+
+	if bytes.Equal(tools.Tools[0].InputSchema, types.ChatInputSchema) {
+		argValue = types.SampleCallRequest{
+			Prompt: strings.Join(args, " "),
+		}
+		args = nil
+	}
+
+	for i := 0; i < len(args); i++ {
+		arg := args[i]
+		if !strings.HasPrefix(arg, "--") {
+			if len(args) > 1 {
+				return nil, fmt.Errorf("if using JSON syntax you must pass one argument: got %d", len(args))
+			}
+			err := json.Unmarshal([]byte(arg), &argValue)
+			if err != nil {
+				return nil, fmt.Errorf("failed to unmarshal JSON: %w", err)
+			}
+			break
+		}
+		k, v, ok := strings.Cut(arg, "=")
+		if !ok {
+			if i+1 >= len(args) {
+				return nil, fmt.Errorf("missing value for argument %q", arg)
+			}
+			v = args[i+1]
+			i++
+		}
+		argMap[strings.TrimPrefix(k, "--")] = v
+		argValue = argMap
+	}
+
+	if argValue == nil {
+		argValue = map[string]any{}
+	}
+
+	callResult, err := r.Call(ctx, tools.Server, tools.Tools[0].Name, argValue)
+	if err != nil {
+		return nil, err
+	}
+	return &mcp.CallToolResult{
+		Meta:              callResult.Meta,
+		StructuredContent: callResult.StructuredContent,
+		IsError:           callResult.IsError,
+		Content:           callResult.Content,
+	}, nil
+}
