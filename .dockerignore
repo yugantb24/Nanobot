@@ -1,0 +1,16 @@
+.git
+.env
+.env.*
+.envrc
+.aws
+.docker
+.nanobot
+.venv
+node_modules
+bin
+releases
+**/*.db
+**/*.db-*
+third_party/upstream-automation
+third_party/upstream-packaging
+**/.github

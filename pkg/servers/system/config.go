@@ -1,0 +1,149 @@
+package system
+
+import (
+	"context"
+	"fmt"
+	"maps"
+	"os"
+	"path/filepath"
+	"strings"
+
+	"github.com/obot-platform/nanobot/pkg/mcp"
+	"github.com/obot-platform/nanobot/pkg/servers/obotmcp"
+	"github.com/obot-platform/nanobot/pkg/skillformat"
+	"github.com/obot-platform/nanobot/pkg/types"
+)
+
+var allowedPermsToTools = map[string][]string{
+	"bash":            {"bash"},
+	"read":            {"read"},
+	"write":           {"write", "edit"},
+	"edit":            {"edit"},
+	"glob":            {"glob"},
+	"grep":            {"grep"},
+	"todoWrite":       {"todoWrite"},
+	"webFetch":        {"webFetch"},
+	"skills":          {"getSkill"},
+	"askUserQuestion": {"askUserQuestion"},
+}
+
+func (s *Server) config(ctx context.Context, params types.AgentConfigHook) (types.AgentConfigHook, error) {
+	session := mcp.SessionFromContext(ctx)
+	var envMap map[string]string
+	if session != nil {
+		envMap = session.GetEnvMap()
+	}
+	if agent := params.Agent; agent != nil && agent.Name != "nanobot.summary" {
+		if agent.Model == "" {
+			// Ensure the model is set so that we count tokens accordingly for compaction.
+			agent.Model = envMap["NANOBOT_DEFAULT_MODEL"]
+			if agent.Model == "" {
+				agent.Model = s.defaultModel
+			}
+		}
+
+		for _, perm := range agent.Permissions.Allowed(maps.Keys(allowedPermsToTools)) {
+			for _, tool := range allowedPermsToTools[perm] {
+				agent.Tools = append(agent.Tools, "nanobot.system/"+tool)
+			}
+
+			if perm == "skills" {
+				// Get all available skills (built-in + user-defined)
+				skillsList, err := s.listSkills(ctx, struct{}{})
+				if err != nil {
+					// If we can't list skills, log but don't fail the hook
+					continue
+				}
+
+				// Build the skills prompt
+				if len(skillsList.Skills) > 0 {
+					var skillsPrompt strings.Builder
+					skillsPrompt.WriteString("\n\n## Available Skills\n\n")
+					skillsPrompt.WriteString("Skills provide detailed instructions for specific tasks. ")
+					skillsPrompt.WriteString("When your task fits one of the skills below, call getSkill('skill-name') to load its instructions.\n\n")
+
+					for _, skill := range skillsList.Skills {
+						skillsPrompt.WriteString("- **")
+						skillsPrompt.WriteString(skill.Name)
+						skillsPrompt.WriteString("**: ")
+						skillsPrompt.WriteString(skill.Description)
+						skillsPrompt.WriteString("\n")
+					}
+
+					if envMap["OBOT_URL"] != "" {
+						skillsPrompt.WriteString("\nWhen you need a new skill that is not already installed, use the searchSkills tool to search Obot.\n")
+					}
+					// Append to agent instructions
+					agent.Instructions.Instructions += skillsPrompt.String()
+				}
+
+				// Make workflow and artifact tools available to agents with skills permission.
+				agent.Tools = append(agent.Tools, "nanobot.workflow-tools")
+				agent.Tools = append(agent.Tools, "nanobot.artifacts")
+				agent.Tools = append(agent.Tools, "nanobot.tasks")
+
+				if envMap["OBOT_URL"] != "" {
+					agent.Tools = append(agent.Tools, "nanobot.skills")
+				}
+			}
+		}
+
+		// Inject session directory and workflow directory paths into agent instructions
+		if params.SessionID != "" {
+			absSessionDir := sessionDir(params.SessionID)
+			cwd, err := os.Getwd()
+			if err != nil {
+				return params, fmt.Errorf("failed to get working directory: %w", err)
+			}
+			absWorkflowDir := filepath.Join(cwd, skillformat.WorkflowsDir)
+			absSkillsDir := filepath.Join(cwd, s.configDir, "skills")
+
+			agent.Instructions.Instructions += fmt.Sprintf(`
+
+## File Paths
+
+Always use absolute file paths when using Read, Write, Edit, Glob, Grep, and Bash tools.
+
+Your session directory is: %s
+This is where your files for this session live. The Bash tool defaults to this as its working directory.
+
+Workflow files must always be stored in: %s
+Do NOT put workflow files in the session directory.
+
+Skill files are stored in: %s
+Do NOT put skill files in the session directory or workflow directory.
+`, absSessionDir, absWorkflowDir, absSkillsDir)
+		}
+
+		if params.MCPServers == nil {
+			params.MCPServers = make(map[string]types.AgentConfigHookMCPServer, 4)
+		}
+		params.MCPServers["nanobot.system"] = types.AgentConfigHookMCPServer{}
+		params.MCPServers["nanobot.workflows"] = types.AgentConfigHookMCPServer{}
+		params.MCPServers["nanobot.workflow-tools"] = types.AgentConfigHookMCPServer{}
+		params.MCPServers["nanobot.artifacts"] = types.AgentConfigHookMCPServer{}
+		params.MCPServers["nanobot.tasks"] = types.AgentConfigHookMCPServer{}
+		if envMap["OBOT_URL"] != "" && agent.Permissions != nil && agent.Permissions.IsAllowed("skills") {
+			params.MCPServers["nanobot.skills"] = types.AgentConfigHookMCPServer{}
+		}
+
+		obotmcp.ConfigureIntegration(ctx, agent, &params)
+
+		if envMap["OBOT_URL"] != "" {
+			agent.Instructions.Instructions += messagePolicyPrompt
+		}
+	}
+
+	return params, nil
+}
+
+const messagePolicyPrompt = `
+
+## Message Policies
+
+Your messages are subject to administrator-configured content policies. These policies are enforced automatically and may block certain requests or tool calls.
+
+- If a user message in the conversation history is prefixed with "[policy-violation]", it means the user's original message was blocked by a content policy. The text after the prefix is the explanation of the violation.
+- If a tool call returns an error due to a policy violation, it means the tool call was blocked by a content policy.
+
+When a policy violation occurs, do not attempt to help the user rephrase, reword, or otherwise work around the policy. Do not suggest alternative approaches that would circumvent the intent of the policy. Simply inform the user that their request could not be completed due to a content policy.`

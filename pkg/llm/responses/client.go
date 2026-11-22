@@ -1,0 +1,145 @@
+package responses
+
+import (
+	"bytes"
+	"context"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io"
+	"net/http"
+	"strings"
+
+	"github.com/obot-platform/nanobot/pkg/complete"
+	"github.com/obot-platform/nanobot/pkg/log"
+	"github.com/obot-platform/nanobot/pkg/mcp"
+	"github.com/obot-platform/nanobot/pkg/types"
+)
+
+type Client struct {
+	Config
+}
+
+type Config struct {
+	ChatCompletionAPI bool
+	APIKey            string
+	BaseURL           string
+	Headers           map[string]string
+}
+
+// NewClient creates a new OpenAI client with the provided API key and base URL.
+func NewClient(cfg Config) *Client {
+	if cfg.BaseURL == "" {
+		cfg.BaseURL = "https://api.openai.com/v1"
+	}
+	// Remove trailing slash from BaseURL to avoid double slashes in URL construction
+	cfg.BaseURL = strings.TrimSuffix(cfg.BaseURL, "/")
+	if cfg.Headers == nil {
+		cfg.Headers = map[string]string{}
+	}
+	if _, ok := cfg.Headers["Authorization"]; !ok && cfg.APIKey != "" {
+		cfg.Headers["Authorization"] = "Bearer " + cfg.APIKey
+	}
+	if _, ok := cfg.Headers["Content-Type"]; !ok {
+		cfg.Headers["Content-Type"] = "application/json"
+	}
+
+	return &Client{
+		Config: cfg,
+	}
+}
+
+func (c *Client) Complete(ctx context.Context, completionRequest types.CompletionRequest, opts ...types.CompletionOptions) (*types.CompletionResponse, error) {
+	req, err := toRequest(&completionRequest)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, inputReplacement, toolCallPolicyViolation, err := c.complete(ctx, completionRequest.Agent, req, opts...)
+	if err != nil {
+		return nil, err
+	}
+
+	cr, err := toResponse(&completionRequest, resp)
+	if err != nil {
+		return nil, err
+	}
+	cr.InputReplacement = inputReplacement
+	cr.ToolCallPolicyViolation = toolCallPolicyViolation
+	return cr, nil
+}
+
+func (c *Client) complete(ctx context.Context, agentName string, req Request, opts ...types.CompletionOptions) (*Response, string, string, error) {
+	var (
+		response Response
+		opt      = complete.Complete(opts...)
+	)
+
+	req.Stream = new(true)
+	req.Store = new(bool)
+
+	data, _ := json.Marshal(req)
+	log.Messages(ctx, "responses-api", true, data)
+	httpReq, err := http.NewRequestWithContext(mcp.UserContext(ctx), http.MethodPost, c.BaseURL+"/responses", bytes.NewBuffer(data))
+	if err != nil {
+		return nil, "", "", err
+	}
+	for key, value := range c.Headers {
+		httpReq.Header.Set(key, value)
+	}
+	if requestType := types.InternalLLMRequestType(ctx); requestType != "" {
+		httpReq.Header.Set(types.InternalLLMRequestTypeHeader, requestType)
+	}
+
+	httpResp, err := http.DefaultClient.Do(httpReq)
+	if err != nil {
+		return nil, "", "", err
+	}
+	defer httpResp.Body.Close()
+
+	inputReplacement := httpResp.Header.Get("X-Obot-Message-Policy-Replacement")
+
+	if httpResp.StatusCode != http.StatusOK {
+		body, _ := io.ReadAll(httpResp.Body)
+		if err := unsupportedNonReasoningModelError(body); err != nil {
+			return nil, "", "", err
+		}
+		return nil, "", "", fmt.Errorf("failed to get response from OpenAI Responses API: %s %q", httpResp.Status, string(body))
+	}
+
+	response, ok, toolCallPolicyViolation, err := progressResponse(ctx, agentName, req.Model, httpResp, opt.ProgressToken)
+	if err != nil {
+		return nil, "", "", fmt.Errorf("failed to read response: %w", err)
+	}
+	if !ok {
+		return nil, "", "", fmt.Errorf("failed to get response from stream")
+	}
+
+	// Check for errors in the response
+	if response.Error != nil {
+		return nil, "", "", fmt.Errorf("responses API error: %s %s", response.Error.Code, response.Error.Message)
+	}
+
+	return &response, inputReplacement, toolCallPolicyViolation, nil
+}
+
+func unsupportedNonReasoningModelError(body []byte) error {
+	var resp struct {
+		Error *ResponseError `json:"error,omitempty"`
+	}
+	if err := json.Unmarshal(body, &resp); err != nil || resp.Error == nil {
+		return nil
+	}
+	if !isUnsupportedNonReasoningModelError(resp.Error) {
+		return nil
+	}
+
+	return errors.New("non-reasoning models are currently unsupported")
+}
+
+func isUnsupportedNonReasoningModelError(err *ResponseError) bool {
+	if err.Code == "unsupported_parameter" && err.Param == "reasoning.effort" {
+		return true
+	}
+	return err.Param == "include" && strings.Contains(err.Message, "Encrypted content is not supported with this model")
+}

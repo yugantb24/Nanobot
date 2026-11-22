@@ -1,0 +1,30 @@
+# syntax=docker/dockerfile:1
+
+ARG NANOBOT_AGENT_RUNTIME_IMAGE=ghcr.io/obot-platform/nanobot-agent-runtime:main
+
+FROM ${NANOBOT_AGENT_RUNTIME_IMAGE} AS runtime
+
+FROM runtime AS release
+
+RUN mkdir -p /usr/local/libexec
+COPY nanobot /usr/local/libexec/nanobot
+
+# Build stage
+FROM golang:1.26-alpine AS builder
+
+WORKDIR /build
+
+# Copy go mod files first for better caching
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Copy source code
+COPY . .
+
+# Build binary
+RUN CGO_ENABLED=0 go build -o nanobot .
+
+FROM runtime AS dev
+
+RUN mkdir -p /usr/local/libexec
+COPY --from=builder /build/nanobot /usr/local/libexec/nanobot

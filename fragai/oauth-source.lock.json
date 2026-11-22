@@ -1,0 +1,279 @@
+{
+  "module": "github.com/obot-platform/mcp-oauth-proxy",
+  "version": "v0.0.3",
+  "moduleChecksum": "h1:oDaNI7vV7UJcX0yNFXcIYZhzv7Onz+/EfQLIgmQ0Ckw=",
+  "source": "https://goproxy.cn/github.com/obot-platform/mcp-oauth-proxy/@v/v0.0.3.zip",
+  "verification": "Go h1 module checksum exactly matches the dependency checksum in the original pinned agent binary build metadata.",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "sha256": "fc03b4d77e8034e5c385011ba91a4b3a225a0a6af829a79d90aa530aa15e41de",
+      "lfSha256": "fc03b4d77e8034e5c385011ba91a4b3a225a0a6af829a79d90aa530aa15e41de"
+    },
+    {
+      "path": ".github/workflows/build.yml",
+      "sha256": "ab61a0672256062a90fab8118ca5ceeab71ecc55298365beb326327b39bf3d36",
+      "lfSha256": "ab61a0672256062a90fab8118ca5ceeab71ecc55298365beb326327b39bf3d36"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "sha256": "d52a50837869b27560e64b2934dcfc695dbd2113ca915c81c1e5bc32309e7ad1",
+      "lfSha256": "d52a50837869b27560e64b2934dcfc695dbd2113ca915c81c1e5bc32309e7ad1"
+    },
+    {
+      "path": ".github/workflows/test.yml",
+      "sha256": "1662e969448b406fec87ff8e1ca2be0cdb1db0c0838faaf7ec694e857c29e64a",
+      "lfSha256": "1662e969448b406fec87ff8e1ca2be0cdb1db0c0838faaf7ec694e857c29e64a"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "c0a13bf39609edee837289a93f7ffe8930def9b5e4624ba9bbc8140859ff1b98",
+      "lfSha256": "c0a13bf39609edee837289a93f7ffe8930def9b5e4624ba9bbc8140859ff1b98"
+    },
+    {
+      "path": "cmd/root.go",
+      "sha256": "e46d91d0f590bb3e003eeb41a31434e43c571a393caf2e36f081811336969ed1",
+      "lfSha256": "e46d91d0f590bb3e003eeb41a31434e43c571a393caf2e36f081811336969ed1"
+    },
+    {
+      "path": "demo_sqlite.sh",
+      "sha256": "22b7c99b8084e045fb6b25c2009a6959fb332832e7d49a0be0bbf99f1b3a3bda",
+      "lfSha256": "22b7c99b8084e045fb6b25c2009a6959fb332832e7d49a0be0bbf99f1b3a3bda"
+    },
+    {
+      "path": "docker-compose.yml",
+      "sha256": "c7a551c6a19ffe23df43ef63ccf2cb54055db439c548e3c8bc0f897431fc4029",
+      "lfSha256": "c7a551c6a19ffe23df43ef63ccf2cb54055db439c548e3c8bc0f897431fc4029"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "8d71182868bb91e1b29683cf01cc29d4b135805609e7e474faf46c4c301dffc9",
+      "lfSha256": "8d71182868bb91e1b29683cf01cc29d4b135805609e7e474faf46c4c301dffc9"
+    },
+    {
+      "path": "docs/.gitignore",
+      "sha256": "4bb1eacfe1a5bec0c2564214250d04e2b4cd10355e4e8d51f5bd4cc93b648379",
+      "lfSha256": "4bb1eacfe1a5bec0c2564214250d04e2b4cd10355e4e8d51f5bd4cc93b648379"
+    },
+    {
+      "path": "docs/getting-started.md",
+      "sha256": "bef7ed7556bfac9699b2cc942bb5772d7ff43681528d90d4d4913d0d4d2e607d",
+      "lfSha256": "bef7ed7556bfac9699b2cc942bb5772d7ff43681528d90d4d4913d0d4d2e607d"
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "ee97c798499c7606492147113c1189af20a84f4f696bfc0e1b9be31f20225818",
+      "lfSha256": "ee97c798499c7606492147113c1189af20a84f4f696bfc0e1b9be31f20225818"
+    },
+    {
+      "path": "docs/static/img/architect.png",
+      "sha256": "dd376c85274653b8ded58b6ad5f081df96f7531a4fce7c85cee8546a20520786",
+      "lfSha256": "dd376c85274653b8ded58b6ad5f081df96f7531a4fce7c85cee8546a20520786"
+    },
+    {
+      "path": "go.mod",
+      "sha256": "1f76da4a203210833220f33909c0fa9276b8f6b335afa432a3e81bf20bb6bb98",
+      "lfSha256": "1f76da4a203210833220f33909c0fa9276b8f6b335afa432a3e81bf20bb6bb98"
+    },
+    {
+      "path": "go.sum",
+      "sha256": "8b8dd3d791c9c290fc879ba4cadd10d36b1ca3709e1d4bc197b528a09a0be46f",
+      "lfSha256": "8b8dd3d791c9c290fc879ba4cadd10d36b1ca3709e1d4bc197b528a09a0be46f"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "e273ef71da2b16ed221406d2ae8c073968b321bd52ee0926d9a8684402639e2f",
+      "lfSha256": "e273ef71da2b16ed221406d2ae8c073968b321bd52ee0926d9a8684402639e2f"
+    },
+    {
+      "path": "main.go",
+      "sha256": "bbff627457b2d426be90b394cbe2655ba54e1c687ba7450b3556c420f97b2eb6",
+      "lfSha256": "bbff627457b2d426be90b394cbe2655ba54e1c687ba7450b3556c420f97b2eb6"
+    },
+    {
+      "path": "main_test.go",
+      "sha256": "8b3eefac35bf8163412736432ed1c35a5a63fb9c1e66321e726cb087b0f018f0",
+      "lfSha256": "8b3eefac35bf8163412736432ed1c35a5a63fb9c1e66321e726cb087b0f018f0"
+    },
+    {
+      "path": "Makefile",
+      "sha256": "2f067e83791a52efd66a0aa1338a127f35bf1ee4d0f419bdc87d526c8dacc6f4",
+      "lfSha256": "2f067e83791a52efd66a0aa1338a127f35bf1ee4d0f419bdc87d526c8dacc6f4"
+    },
+    {
+      "path": "pkg/db/db.go",
+      "sha256": "115021e233f9410c9b6920f530d20b500f356166ffb106d9b77f95fb0c9057bb",
+      "lfSha256": "115021e233f9410c9b6920f530d20b500f356166ffb106d9b77f95fb0c9057bb"
+    },
+    {
+      "path": "pkg/db/db_test.go",
+      "sha256": "7f6383840c8c6e41cbbc94b0017cf35282161162636f3936187a1b3e9e334d87",
+      "lfSha256": "7f6383840c8c6e41cbbc94b0017cf35282161162636f3936187a1b3e9e334d87"
+    },
+    {
+      "path": "pkg/db/sqlite_test.go",
+      "sha256": "a7a8d436c4b1ad0618488311ca2e3ee7f2564ff932eea54b83d752ab6b51ca5c",
+      "lfSha256": "a7a8d436c4b1ad0618488311ca2e3ee7f2564ff932eea54b83d752ab6b51ca5c"
+    },
+    {
+      "path": "pkg/encryption/encryption.go",
+      "sha256": "c4132ab0fb918535fb442da05a09505c1c94faff2f102455e4dc3963f5340d09",
+      "lfSha256": "c4132ab0fb918535fb442da05a09505c1c94faff2f102455e4dc3963f5340d09"
+    },
+    {
+      "path": "pkg/encryption/random.go",
+      "sha256": "123eba57c3eadaaafed5b539e2e1e4a81b515bf41dc298f658ed299e01641185",
+      "lfSha256": "123eba57c3eadaaafed5b539e2e1e4a81b515bf41dc298f658ed299e01641185"
+    },
+    {
+      "path": "pkg/handlerutils/handlerutils.go",
+      "sha256": "4256243c3ef381ca982e136da489341aa0545e253ea8826b900126ae17537f8e",
+      "lfSha256": "4256243c3ef381ca982e136da489341aa0545e253ea8826b900126ae17537f8e"
+    },
+    {
+      "path": "pkg/oauth/authorize/authorize.go",
+      "sha256": "e563c73bd23310cad6e0313a1c2228fb91ef04dbeb3f0f72b438c986016b27d4",
+      "lfSha256": "e563c73bd23310cad6e0313a1c2228fb91ef04dbeb3f0f72b438c986016b27d4"
+    },
+    {
+      "path": "pkg/oauth/callback/callback.go",
+      "sha256": "9e2a09106e9f18939d69ae7d391c87aba3fcff178a578b96da93dd4a792e36db",
+      "lfSha256": "9e2a09106e9f18939d69ae7d391c87aba3fcff178a578b96da93dd4a792e36db"
+    },
+    {
+      "path": "pkg/oauth/register/register.go",
+      "sha256": "488e9942c64a95515321ec82cb6f1d089592a7de9ccc766637f42ed25f3b0cc7",
+      "lfSha256": "488e9942c64a95515321ec82cb6f1d089592a7de9ccc766637f42ed25f3b0cc7"
+    },
+    {
+      "path": "pkg/oauth/revoke/revoke.go",
+      "sha256": "28708a211270ca72db6657ab1daf73eb4f34e4919d67c18f106711d3a69d73d3",
+      "lfSha256": "28708a211270ca72db6657ab1daf73eb4f34e4919d67c18f106711d3a69d73d3"
+    },
+    {
+      "path": "pkg/oauth/success/success.go",
+      "sha256": "ed39eec90c77999729f5e1787d0004116e343a148722aed07ca840c0189ad34e",
+      "lfSha256": "ed39eec90c77999729f5e1787d0004116e343a148722aed07ca840c0189ad34e"
+    },
+    {
+      "path": "pkg/oauth/token/token.go",
+      "sha256": "4d49584d99954bb11ef83d9d4a8c8e85621f7062ea8e88c3299cfb367e277d98",
+      "lfSha256": "4d49584d99954bb11ef83d9d4a8c8e85621f7062ea8e88c3299cfb367e277d98"
+    },
+    {
+      "path": "pkg/oauth/validate/validatetoken.go",
+      "sha256": "fbaaa03f73644342c6e76260bb58fff0e9c734d12240d06a7d4fb18724b0dbb8",
+      "lfSha256": "fbaaa03f73644342c6e76260bb58fff0e9c734d12240d06a7d4fb18724b0dbb8"
+    },
+    {
+      "path": "pkg/providers/generic.go",
+      "sha256": "f98f61fcdc40498f3886904e4f620a1a17effc6cb4b1f2db44e839b64298cd5b",
+      "lfSha256": "f98f61fcdc40498f3886904e4f620a1a17effc6cb4b1f2db44e839b64298cd5b"
+    },
+    {
+      "path": "pkg/providers/generic_test.go",
+      "sha256": "d33dd156b6b21d9abd8227426cc71d08d1e14cc3b62f1f38f74bdadcfd115dc0",
+      "lfSha256": "d33dd156b6b21d9abd8227426cc71d08d1e14cc3b62f1f38f74bdadcfd115dc0"
+    },
+    {
+      "path": "pkg/providers/manager.go",
+      "sha256": "0cd255bab5d9a6ed66c5659a489414d52a09d209bc56ca3d7581ad685a950d0a",
+      "lfSha256": "0cd255bab5d9a6ed66c5659a489414d52a09d209bc56ca3d7581ad685a950d0a"
+    },
+    {
+      "path": "pkg/providers/provider.go",
+      "sha256": "17928469c8274952c2dd5efd756c7b4883a85bed400ad9885fcb71c59e241e51",
+      "lfSha256": "17928469c8274952c2dd5efd756c7b4883a85bed400ad9885fcb71c59e241e51"
+    },
+    {
+      "path": "pkg/providers/provider_test.go",
+      "sha256": "61320b1e2e753d80484c04d2fa6d02fe92d6480ed73a067d4fa0a6a3a981f6de",
+      "lfSha256": "61320b1e2e753d80484c04d2fa6d02fe92d6480ed73a067d4fa0a6a3a981f6de"
+    },
+    {
+      "path": "pkg/proxy/proxy.go",
+      "sha256": "89facb6a144ce2891dacbc42677a8ea142f7428668f7f3b236ee8a6ebd6e29b3",
+      "lfSha256": "89facb6a144ce2891dacbc42677a8ea142f7428668f7f3b236ee8a6ebd6e29b3"
+    },
+    {
+      "path": "pkg/proxy/proxy_test.go",
+      "sha256": "dd9a931e718bf184e36bf0d3a537d220132b71c31cdc2d0bcb45e4182bb44c03",
+      "lfSha256": "dd9a931e718bf184e36bf0d3a537d220132b71c31cdc2d0bcb45e4182bb44c03"
+    },
+    {
+      "path": "pkg/ratelimit/ratelimiter.go",
+      "sha256": "77fb9a803d5d342a91cc1c88811b3a06c0f6678228e0c9e2f1e13882d75cae18",
+      "lfSha256": "77fb9a803d5d342a91cc1c88811b3a06c0f6678228e0c9e2f1e13882d75cae18"
+    },
+    {
+      "path": "pkg/tokens/apikey.go",
+      "sha256": "fb1a24e4fd5f592e1c06b861b8ce581f69ceb153fe879bffa2acb79f58b1f317",
+      "lfSha256": "fb1a24e4fd5f592e1c06b861b8ce581f69ceb153fe879bffa2acb79f58b1f317"
+    },
+    {
+      "path": "pkg/tokens/apikey_test.go",
+      "sha256": "bc07babb61867cc0e4c78e297df080381b97929ef48d27c06c6bc945e9bbf157",
+      "lfSha256": "bc07babb61867cc0e4c78e297df080381b97929ef48d27c06c6bc945e9bbf157"
+    },
+    {
+      "path": "pkg/tokens/manager.go",
+      "sha256": "4f8f2d209e5b65bf44d7dedbac1836a173b95a9e5beda7d82517504d4e78c0b7",
+      "lfSha256": "4f8f2d209e5b65bf44d7dedbac1836a173b95a9e5beda7d82517504d4e78c0b7"
+    },
+    {
+      "path": "pkg/tokens/manager_test.go",
+      "sha256": "d4c39b985d25fa647fb2387d5d9c6adb6d019d9fb556b3b31ca72bebac5b1d38",
+      "lfSha256": "d4c39b985d25fa647fb2387d5d9c6adb6d019d9fb556b3b31ca72bebac5b1d38"
+    },
+    {
+      "path": "pkg/types/apikey_types.go",
+      "sha256": "5c05adda41b8baf50db793122902023c4d106d37c6664e9495a7afa8f15db30f",
+      "lfSha256": "5c05adda41b8baf50db793122902023c4d106d37c6664e9495a7afa8f15db30f"
+    },
+    {
+      "path": "pkg/types/db_types.go",
+      "sha256": "0a70de13a6203074f0b069f00cfd3de177bed4d00e9b44c51b57d82f7145c752",
+      "lfSha256": "0a70de13a6203074f0b069f00cfd3de177bed4d00e9b44c51b57d82f7145c752"
+    },
+    {
+      "path": "pkg/types/oauth_types.go",
+      "sha256": "196a8979aec85888909481d0ddb80123bef52ae470142310ca907f9a3e7cb871",
+      "lfSha256": "196a8979aec85888909481d0ddb80123bef52ae470142310ca907f9a3e7cb871"
+    },
+    {
+      "path": "pkg/types/types.go",
+      "sha256": "8544dc4c997f2aa3bf18aa8574e63936fbc966dd079d9cfe74b0a237a3fade37",
+      "lfSha256": "8544dc4c997f2aa3bf18aa8574e63936fbc966dd079d9cfe74b0a237a3fade37"
+    },
+    {
+      "path": "README.md",
+      "sha256": "cdfd6b01e8d3bf5662411b6af7f8c129b2fb15db03a15641f084422d0aac82df",
+      "lfSha256": "cdfd6b01e8d3bf5662411b6af7f8c129b2fb15db03a15641f084422d0aac82df"
+    },
+    {
+      "path": "run_tests.sh",
+      "sha256": "bafd112f713c8d777ba4a2e6ed2c3034da8ee691b2ebfe44c279e90ddc9e6caf",
+      "lfSha256": "bafd112f713c8d777ba4a2e6ed2c3034da8ee691b2ebfe44c279e90ddc9e6caf"
+    },
+    {
+      "path": "test.sh",
+      "sha256": "b12285d30e2a35e76824a30637596b5f300d9ad05c7784a7fa2505c4ae39052d",
+      "lfSha256": "b12285d30e2a35e76824a30637596b5f300d9ad05c7784a7fa2505c4ae39052d"
+    },
+    {
+      "path": "TESTING.md",
+      "sha256": "e0191a2018e2e44b84e4789fbf38d5651dccf3eae09db5c4f0b1ef8dee0b573d",
+      "lfSha256": "e0191a2018e2e44b84e4789fbf38d5651dccf3eae09db5c4f0b1ef8dee0b573d"
+    },
+    {
+      "path": "test_oauth.sh",
+      "sha256": "3535b0ef9379ceea28d41d9ed5a9ee105c709f960afe60cf2767e3448a299811",
+      "lfSha256": "3535b0ef9379ceea28d41d9ed5a9ee105c709f960afe60cf2767e3448a299811"
+    },
+    {
+      "path": "test_sqlite_ci.sh",
+      "sha256": "3259cf6a69b9b7c060300ec47c25fbe5c68a46b1d91b9213ef17d74e262e9502",
+      "lfSha256": "3259cf6a69b9b7c060300ec47c25fbe5c68a46b1d91b9213ef17d74e262e9502"
+    }
+  ]
+}

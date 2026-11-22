@@ -1,0 +1,4 @@
+# Local artifacts from the removed documentation build.
+/node_modules
+/.docusaurus
+/build

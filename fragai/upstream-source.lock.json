@@ -1,0 +1,1591 @@
+{
+  "schemaVersion": 1,
+  "repository": "https://github.com/obot-platform/nanobot",
+  "tag": "v0.0.92",
+  "revision": "00a40e47b82581ffdf52860eae08ec500d76dd7b",
+  "baseline": "ghcr.io/obot-platform/nanobot-agent@sha256:6c612bfcd18183c6ea22077ea8c0e690245a483d3accd392621c45e1fcab6ea0",
+  "workflowArchive": "third_party/upstream-automation/nanobot",
+  "files": [
+    {
+      "path": ".github/CODEOWNERS",
+      "sha256": "13b11f31999ed9f7edc0b084b3db1da55e5f07a44c79501a32b7d8ef46b15e42",
+      "lfSha256": "3731013cfdcd8334421c0b77fdf91898c9321a692883b15efa1cb4abd7242598"
+    },
+    {
+      "path": ".github/workflows/build-agent-runtime.yml",
+      "sha256": "5a9624780037995e13ec9b4292a14c9311eb693376bbda40d2ba73a8490e25a2",
+      "lfSha256": "046ae4f2ef81134773796a532a61a431766fd3c17dd7a2847867c0a45526dc40"
+    },
+    {
+      "path": ".github/workflows/build-main.yml",
+      "sha256": "63aa2b5a1815b140847bd88ac8cb336466a609419251b72249a9a2defdd1b5b5",
+      "lfSha256": "d619c63e4b77f3a68e5a08628e06437ff16f7c2b24bcc399adc2e8922ccd1623"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "f851fde95c530a9bea8166fc4ddb3ac4a7c0ef9ee0368d233620c7afb447d4c2",
+      "lfSha256": "805ab1f693930aa91ecce62a12d605ea94c6c6ed96166b640bf5c3f92f080692"
+    },
+    {
+      "path": ".github/workflows/release.yaml",
+      "sha256": "b4cf18d69e53e5d8aaf7e25b01082bcf6b45fb10bc051e59ca3021727dc05663",
+      "lfSha256": "26141f78d5d8042ecbec8356c86e579c2bb57cc0837491b6831629f21482c5da"
+    },
+    {
+      "path": ".github/workflows/update-chat-env.yml",
+      "sha256": "2eba78940a9815a201426c850cf4e8ea78118a03d488ad4ab3cea15f5cffbdda",
+      "lfSha256": "d4115189e6cf9b17341f69acdefe62f47478e6fb2b9fc221f9a17ab3493379dd"
+    },
+    {
+      "path": ".github/workflows/update-demo-env.yml",
+      "sha256": "71674ff11543c1240488a10effc764b9b0a9b87547a9ba1da106cdf6bcd73e0a",
+      "lfSha256": "f9b39d5dd836ee9c7cfc82c7846045204c5916eae7ff83b4fd013ce2897afb8c"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "046acc7d4e0d2d5a00681f2121c09511d8eb3fc4b85c642edf336e2a79892ed3",
+      "lfSha256": "31503126bd13385bc9f56b9aec471fd07c3c66161295dd17ee0ea86bc3dce378"
+    },
+    {
+      "path": ".goreleaser.yml",
+      "sha256": "efeb1f31b6362e84ce4ce26a94504a944ba8c410e8619365084bf2479929a1f8",
+      "lfSha256": "30c36e28be716ee8787b4229af417ee2f716dd10348ed5f20420c9a3563e5fe1"
+    },
+    {
+      "path": "biome.json",
+      "sha256": "2d893abcffe00252d77b1f5fdc079144989ce6e4fdce6ce14d5aa78f2282c247",
+      "lfSha256": "70f7877b20a04e6e812df0d92d242a9ad9834cbe105332e3a2077b9d98d01d44"
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "6abe1e96e0ffa5f1be13181d7520df80a4619701364a2748afa04c4f7889ed22",
+      "lfSha256": "11ebe1d25dc92adaac63047c1138faee15e2414b4f4e6c8ce0b97827eb378d4c"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "ee1cc2ad036e88a8d902aa9eb4c481009225f8809318d4f415026eafc9d3580b",
+      "lfSha256": "59870c453e675b195f72f301d09fe9883979bbe9d0a9a30d6c5e9e24da0a6caf"
+    },
+    {
+      "path": "Dockerfile.agent",
+      "sha256": "650490a7f3243c70d1300337ef124b93d9c8b2a05c5c73cfe92356f6b51df8af",
+      "lfSha256": "fb31c834d81f7fc2f2d2cf6ecae983c5b3e18a3c5e850c865cde016e36c3f12b"
+    },
+    {
+      "path": "Dockerfile.agent-runtime",
+      "sha256": "8610090cb289a27f0f4a703a9313a9f3ff549c547ffef54a75ab75aa159b9965",
+      "lfSha256": "82425c21e93e4ec85b7666dd299473797d5ac7d21354c1fbd1875e65ad406427"
+    },
+    {
+      "path": "docs/agents/schemas/agent.frontmatter.schema.json",
+      "sha256": "a55cc7af9f007b6c7ee3a96c0893adfeba61bb735290f43a7c144c1b79fa6d62",
+      "lfSha256": "4027f4f2cd9df67ad5161235f8e75e543e849f993d0c7a4bd4900250dd44f259"
+    },
+    {
+      "path": "docs/agents/schemas/mcp.schema.json",
+      "sha256": "0e8d3014eb45972f083d95deca165a2ed1617b2cbf5ef4fffdd4e030fd14497c",
+      "lfSha256": "4ffa9b4f959c63ed85f2eab898f1d9b05842eb7a3a6d9e23e158d42976a41d77"
+    },
+    {
+      "path": "docs/agents/schemas/skill.frontmatter.schema.json",
+      "sha256": "30eeb625be0c6c08c2c7b69942b4cdf60ddcfe56b449592dac389364f630e305",
+      "lfSha256": "03c193ac7d485e8c8eec0d08f3643fd55ceae51a6a843d95645d7d419cf0221e"
+    },
+    {
+      "path": "docs/agents/schemas/task.frontmatter.schema.json",
+      "sha256": "75305b6663a7d9ccd76d5562773523df744a9937225b548a0ed4e3604fc95054",
+      "lfSha256": "26f896087717932764b829250ec23cdf28e1c4ae3a64d74686ae0e37854c9c1a"
+    },
+    {
+      "path": "docs/agents/schemas/task.step.frontmatter.schema.json",
+      "sha256": "bc5e0ebd44bf173cdbc146ca66b7718565dc44f4d27b68b50d3a6134ab7ef0a0",
+      "lfSha256": "ba6a818f4d405bd80db022e263b9556bbe9e4a74daed60b5aba40ce292dbb731"
+    },
+    {
+      "path": "docs/header.svg",
+      "sha256": "bcb21d88605f93a0cca81b25f466221d2b7eea39fa5efae13f559f711598043e",
+      "lfSha256": "d30c956232b3e049bf692d7ac76a74b6c8afea81fa233e8690817565cee5c6ad"
+    },
+    {
+      "path": "docs/mcp-host.png",
+      "sha256": "f39d36c037b56a7d1d9bf34b02c55d238d1dd56dba66fbfb91567218ffa7e812",
+      "lfSha256": "f39d36c037b56a7d1d9bf34b02c55d238d1dd56dba66fbfb91567218ffa7e812"
+    },
+    {
+      "path": "examples/blackjack.yaml",
+      "sha256": "8afe5d348640b36ad718748046c4cc32fb2c2428816b3ad6bef2ed31fb77a8f8",
+      "lfSha256": "1d358bc5266dce7df710647c369436470f66dc7878f5773799a6e6a9e70a257b"
+    },
+    {
+      "path": "examples/directory-config/agents/helper.md",
+      "sha256": "15aae8d6c2ca8b348b00a1d0e963dcf84ac1368964adde43414f993ad1b4bb6d",
+      "lfSha256": "6fe0c8f1ffd1b8cc99f39d5c2fcbb69282f2434c97502615cba6086bdada311e"
+    },
+    {
+      "path": "examples/directory-config/agents/main.md",
+      "sha256": "0a7f8e63fab83a6509e44317d7b6a3d89fe49a3b261d962a64a54124e17549de",
+      "lfSha256": "ddfa177af0316dea02c132b4d82de10affc00a5a320d18a3c7d46b8a50caa453"
+    },
+    {
+      "path": "examples/directory-config/mcpServers.yaml",
+      "sha256": "7bf1a630d17d97800fe5a237f12a6dc7169faf8cbbd54f01636e21e27524d41e",
+      "lfSha256": "64a1d79bf6dbd3b9658e1659423f13430201d22fdb3c65e5bb448977d5678ba2"
+    },
+    {
+      "path": "examples/directory-config/README.md",
+      "sha256": "ed707c4c15f8a7a74f389c4980a6e77563f6f5d7b5b09e1a4cf2d28546390afd",
+      "lfSha256": "4b767b4f11471f3439aa0c40ed72e393037cab91a41d2690b039dbd5ed13555c"
+    },
+    {
+      "path": "examples/epic.yaml",
+      "sha256": "2fb20011ac8acceac9615d3631c08ba4a33e716812f2040921436d0984fb4f62",
+      "lfSha256": "9261fdf4ad14ee484d3285e3f4f87abd2b092ae0604c78c44f3f74721fb66696"
+    },
+    {
+      "path": "examples/huggingface.yaml",
+      "sha256": "7c3059ff7fa4cc9624d1ef21ff63e0a10819ac4f961d5fc7dfce6df860b3946f",
+      "lfSha256": "e38131d6ff87d5b39858ed94ae3da5ddf26e04df4507f6425ff69e3dab8b0a72"
+    },
+    {
+      "path": "examples/random.yaml",
+      "sha256": "32c3e27b461ec476a3e416d57f075b3d65c0a9bf150e4ff2617f98a1c70f632b",
+      "lfSha256": "c5c63c711c1d4e04dad44bd1f5859f92341a60cbc5616bf4f97308969d5e34ef"
+    },
+    {
+      "path": "examples/shopping.yaml",
+      "sha256": "2b1f84ac102716f0882a5665bbbbf06d302d2ad907241ddfd96ac9256a5a337f",
+      "lfSha256": "a02ef8c1384254fff9acc8d423d418f913ec4605afb02a9038d1d8dd8cad723b"
+    },
+    {
+      "path": "go.mod",
+      "sha256": "c400f6e80c3c528e5ccad95f57a7832d90e9a9adcd0a986a591c20d3d43102f2",
+      "lfSha256": "874e4af4857f98bb14e1de75d94cce671d0d95501940ca9ec277234c3290f18e"
+    },
+    {
+      "path": "go.sum",
+      "sha256": "78d33ee311d509960b0c19b4547c0d092f9061b2cb51e33aedfccd183505fc33",
+      "lfSha256": "d47a091b90f0b7cd4a35b290bc5bcd85fbcc152a9c5fd1d1250104624c5b6dac"
+    },
+    {
+      "path": "integration_test/main_test.go",
+      "sha256": "40c3e7a3283fbe4431c2937f602db849a096da73686d98f40c0677f8d26771e7",
+      "lfSha256": "393305c5e68cda4c9a19a3851af7c919dd41c11a3fd61e4e84b5a230f4ad3122"
+    },
+    {
+      "path": "integration_test/README.md",
+      "sha256": "35d0784d52bcf5cfbc4d0c8e03b8ea8510a75be50d5f58a6c8eed82ba7d334a8",
+      "lfSha256": "38c25e8f5cc6a65780e477cb75bdd938165b43e79fe8931deeb041734f47e06e"
+    },
+    {
+      "path": "integration_test/workflow_skill_test.go",
+      "sha256": "90a5dc6ceb5f2316e90a4c1950066c7e7b8c5e9c785c0f050f3c216946c5037b",
+      "lfSha256": "c3562c3a337c7472425e8c6f9b2fb72b4ed51dac6aa24ec5de3a5df5441f1bde"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "1d5afc26765f4da03ed7605f2944198b985dac1ddac0ec0b5ace57fe06b94330",
+      "lfSha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+    },
+    {
+      "path": "main.go",
+      "sha256": "71c8d423d4f5000084facd90ee306502dc11431fc48620dc4b915ad8f53944a2",
+      "lfSha256": "a3fcedc1e0fd2cbad77ffac9d2f954c4901b244af2677bf333120e97e9f341d4"
+    },
+    {
+      "path": "Makefile",
+      "sha256": "46ddfbdc2f884d7d6a506a11855751e2583709c01166966f0e388d46b366bba6",
+      "lfSha256": "fae55ac64894075e28c1eb96ae1e7c8b5da034e00b96b3a59db1052132df9bfe"
+    },
+    {
+      "path": "pkg/agents/compact.go",
+      "sha256": "de9d4fbbe1145df09203b00fb3350203604e6112a3b3a7d03badbd339574c57b",
+      "lfSha256": "956455d016ce050a97258dda1bdfbfacbf90e393c61199b36facab7f9856fc52"
+    },
+    {
+      "path": "pkg/agents/compact_test.go",
+      "sha256": "8353d15367f4c590a221b5802fcf104a275272afd74645a2a673684b1f74781e",
+      "lfSha256": "5ebf8ab9a0ad6112e91e4e8090fb0e0491f7c709ccaf0b52323ee73b0f686441"
+    },
+    {
+      "path": "pkg/agents/run.go",
+      "sha256": "f0a6ae88b3e1bb51d11f4a043b787213d17f5aa509526414f88dd70ef411c153",
+      "lfSha256": "ffbe38297d959b56bc86392411becbaa68e90239e68303f580f9a5fe38db3821"
+    },
+    {
+      "path": "pkg/agents/tokencount.go",
+      "sha256": "110dbb1ed8497b5739d5429060ded362b560ffa4d6b749ab7a1ce0ab86a7a0e4",
+      "lfSha256": "e46035f9c11f31046476cc1b1680807a25c3c7fb0d9e965fc3e0f331e8168a9f"
+    },
+    {
+      "path": "pkg/agents/tokencount_test.go",
+      "sha256": "f7ba5fb006dad2542042970575b244f0a56bc01e661a2774a00fd8c2b8047e00",
+      "lfSha256": "d71d80e21fe15b4293c2ede3f87a22cd30b92b9c78e9700de54c9f74b41385ef"
+    },
+    {
+      "path": "pkg/agents/toolcall.go",
+      "sha256": "fed7c928c6649662378580939d4a2505726dfbf24ad1461cea26c3aeb48caaae",
+      "lfSha256": "f1e6c6b5752fb469aad213e175bd03c7414ef5a3b119449ca95ea58811161a4b"
+    },
+    {
+      "path": "pkg/agents/truncate.go",
+      "sha256": "4bea5e4abb6ecf77632ef0ea48a91325b806323dc03bc019b439f587d644e2b7",
+      "lfSha256": "02f52d9e48fa7bc486934f4960c5b152e217da0332765cdaed17fbc255e16885"
+    },
+    {
+      "path": "pkg/agents/truncate_test.go",
+      "sha256": "2c433e0ef81e0831baa5492b83d2baf36e1558b9ed073fa65036c2b7574a435b",
+      "lfSha256": "aaf54accd8c09831756e46fe2b506eb45c6a1fdd4afc0bdf6fb1e83f76773f78"
+    },
+    {
+      "path": "pkg/api/events.go",
+      "sha256": "16cfa360c693afc6cfe070394838bab9c938e3b8edfa9b30743463045f1c3b65",
+      "lfSha256": "c502fded837d607cc0214897b8d81698a16fd6af44cee7605ce0168fee55e3cf"
+    },
+    {
+      "path": "pkg/api/hander.go",
+      "sha256": "37a3aee0145fe92f8091cb267f732e7b95ecd30eb9b28bb9acff10d4c1b5bf28",
+      "lfSha256": "dc0a514116518b321ba3d1394d2058fc59cfcc6bef8eac075379ca5d17b90014"
+    },
+    {
+      "path": "pkg/api/routes.go",
+      "sha256": "7ad910fb845f420236bfa5e17cf0921bfc3829aee1dd12e628dc42a80b0ef0cd",
+      "lfSha256": "7c83715bc4888d14cfa3115efd08631b9b790962882017f42bf35b2c8ceda8e5"
+    },
+    {
+      "path": "pkg/auth/auth.go",
+      "sha256": "db80a52dfc4714028d3f87a77a31a0a773791c8c8bda8a9b6306cf6c57f8abde",
+      "lfSha256": "7e3ff6244542ecafeee38c0372ce8c946fa43feec9f9e30d2afb89d9cb55dac5"
+    },
+    {
+      "path": "pkg/chat/print.go",
+      "sha256": "e9a666cc4436a3999a9b4d25b2e3c0b2992d80461ad1c54713a6e0e985cf8c85",
+      "lfSha256": "1d744c2db072822f6fce371748a3b449ead1a320d4a838beca6a439f5303e26f"
+    },
+    {
+      "path": "pkg/cli/call.go",
+      "sha256": "e690e9dac50e89ddd92bc0937621711047454b0b7063ce836e2a38f7e8fee275",
+      "lfSha256": "43586ac6a9485cf49b1700beb7591ec036f3700754a386adeb7e3614a6da1aab"
+    },
+    {
+      "path": "pkg/cli/root.go",
+      "sha256": "a233e9122641638ee027fb0a4e6268f44e308bf7dc5b0e3808ac6fb52af02ded",
+      "lfSha256": "193dd4c5b25c4b3ef2619416a9f6c26d720638b6647c29369cc2e3eff46d9b88"
+    },
+    {
+      "path": "pkg/cli/root_test.go",
+      "sha256": "49202a3693d6fa6a937964df579a29ac24641dfc07d83955e37bed314e875da3",
+      "lfSha256": "613c5dcbbdd91873020df0b98c6225f5f2abd2794058d49d8dbf1a20c6c9ff8a"
+    },
+    {
+      "path": "pkg/cli/serve.go",
+      "sha256": "dfbb6ecbb128530fefb9227e496fde982a5c109bdb9c3c9fba478aa27d964e52",
+      "lfSha256": "0a7692a54a848f6a75d4d6bcd739d186982997b361c816bb9ac1f9935249ddf3"
+    },
+    {
+      "path": "pkg/cli/sessions.go",
+      "sha256": "1baf3cec1e77667e31c08cd08db4610245e387c9a9852c8f62bef56dc4acdc0a",
+      "lfSha256": "a8b801b5bad88d92ab3b086e6d3b68d6ada27e0b15eed9746dfa8036da5fff80"
+    },
+    {
+      "path": "pkg/cli/targets.go",
+      "sha256": "f5ecd45951e5673fda02bd29401bd0abedd5bc6760899116f8bdb4b1fd9b991a",
+      "lfSha256": "be3a7980cf4334c0df5a30bb1d6167ad01098a77caaf50bd3408ee350595fca2"
+    },
+    {
+      "path": "pkg/cmd/builder.go",
+      "sha256": "393335ea44667975bc99dd1923482d6e09b3898a079e3db350852d55b680c31d",
+      "lfSha256": "f986c80b334b1531f47b6f60628c7d393df2a8852836b1c11f7a3acb6d3d1896"
+    },
+    {
+      "path": "pkg/cmd/signals.go",
+      "sha256": "a3ac069f1503e86657f04ba47313f3952f81c8810abe039f1351b8987bab4c78",
+      "lfSha256": "f17f03e964899de1be947f09c72c73aa0c2e55f4b38a5aee231e7a0c86b9b87c"
+    },
+    {
+      "path": "pkg/cmd/signal_posix.go",
+      "sha256": "28e6278d3210dcfeaee2a65bd3b6a1a17d547e5e456a126e32b660bde1d4b760",
+      "lfSha256": "29114f6286e8513b5ed4d50795a7a97d6ff5a4dd246470ca681825694e72c883"
+    },
+    {
+      "path": "pkg/cmd/signal_windows.go",
+      "sha256": "1f3a3a331aa8b9520d7c017115c225ecb39cb1676933fefaf03b753cc889ef47",
+      "lfSha256": "376c9e6362c32e1aa228bfdc358e4f644b6b0d83565564defde763001857a558"
+    },
+    {
+      "path": "pkg/complete/complete.go",
+      "sha256": "e0b86061af88143ac26bb343dd5af82ac4db21a94f228238b7cd5fa940197a3e",
+      "lfSha256": "7b709bfd01d5d70320dd2183e176a68a5a488296ab1383167628eaccb7740fc9"
+    },
+    {
+      "path": "pkg/config/agents/agents.go",
+      "sha256": "e6be96f9d80dafed8f399b614d95b1013cc20b2b805afe9d62421c0a5c291352",
+      "lfSha256": "5bd79a153771d32f48273efab1ec11bdc8deb57ef86ed23eae65c1d6ca3526ce"
+    },
+    {
+      "path": "pkg/config/agents/nanobot.md",
+      "sha256": "9ae499eba86889cf42fba60d4999df96c74c92a6537700246e22b635c94fd379",
+      "lfSha256": "9667d1f77931ba638b60532aa97c66da20716b83422892e342ce58aefaf73220"
+    },
+    {
+      "path": "pkg/config/builtin_test.go",
+      "sha256": "c2f902f5e42d4bd41c9892b33bbe7ce018be223568d9dce02d672360e17d779e",
+      "lfSha256": "9a34c9993e4ea86091ab2a73cc50686b440b7ccd415f18bfcde1289082664b1c"
+    },
+    {
+      "path": "pkg/config/directory.go",
+      "sha256": "99866203cfbcc000be348a056f8e06e0e6f30a9ad5b5f641289288a7891d99c1",
+      "lfSha256": "8795187efa5ae462f3c692e6121d84f12552f2f6eb5fd50168d40278124d49c8"
+    },
+    {
+      "path": "pkg/config/directory_test.go",
+      "sha256": "15a702d45b3f91bf837b899b84c030bdd0dd894e1d0b47dcd86ec3dcce9239b6",
+      "lfSha256": "6d817aec024aecb2eaa801eef84bcc8ff75e29e0aa67c13cc3d0ae895d130b1d"
+    },
+    {
+      "path": "pkg/config/frontmatter.go",
+      "sha256": "acec0e32d5119e4264e22e28ea320067495e99e3c2996e00bd78e16aa9e27d3e",
+      "lfSha256": "5737eeea65f7cec773aede46986e27c1d56603436721e3d1b187613b90ae39c6"
+    },
+    {
+      "path": "pkg/config/frontmatter_test.go",
+      "sha256": "3bfa82adf4f6325ed4a4455aa602f5d29f3d712e18bb22baa3025ec42d279265",
+      "lfSha256": "48a660c87a82d0298f10bbe0e53a7007f86ca840588695c4a6b50a69b502b2e5"
+    },
+    {
+      "path": "pkg/config/load.go",
+      "sha256": "e72cefa8ab076b11af2a450f359e7275f8a7dc0bbb2895c526ea6467bbfa5edd",
+      "lfSha256": "b08e4facf8ab678839029685994ac98fa9c41e1e2e0f150aad2e6513f32fecab"
+    },
+    {
+      "path": "pkg/config/load_test.go",
+      "sha256": "76c4321cf0bc66c5b1f87862470d096c57112f478a594e3df1ee23285f41f53c",
+      "lfSha256": "7b0f7f3160c9cf8e81fbc875a41e103259daf1a2906982cb9a7a58ec848596f0"
+    },
+    {
+      "path": "pkg/config/resolver.go",
+      "sha256": "8f6edd1f70bbc63b782e039649445f60c3fe79620fd32b8c4ddd9bb45cc41e26",
+      "lfSha256": "f1912714b0449bf003cb3a1bfce9f9c84bbb87131cfeb8d95bc46cc1faf43a86"
+    },
+    {
+      "path": "pkg/config/resolver_test.go",
+      "sha256": "51b48fbfccda1437d8dabf1ff6bcf9f05edb331d5701b4cf36d5f7f46463f0ee",
+      "lfSha256": "c931939642d070b81c3ad117fc05382fa49dc69171689a47bfcc3885ff4825d9"
+    },
+    {
+      "path": "pkg/config/schema.go",
+      "sha256": "cf4d74a57f53df06ea0780a1e11b87ce1836d00dd499481251733e8c4cf8e7a7",
+      "lfSha256": "fcf9914cc5186be2bfc8a159c1c8cedbe0a2178c7f6ddf65593181aa560fa7f0"
+    },
+    {
+      "path": "pkg/config/schema.yaml",
+      "sha256": "34312f36b5dc43f3e0751f5d685af34d4e1d9c7de6e53cf365bd666cb8132897",
+      "lfSha256": "33d1ab09599312f0df7e72ddb2deba2c3308ba71c5bb6002d93ea55ca72366e0"
+    },
+    {
+      "path": "pkg/config/static.go",
+      "sha256": "a3818bb491c5993110ddb43d21bbc5b88dfdea27fe6c0bcfd4095c9fc7af2a40",
+      "lfSha256": "1b4b49bc83ebfabf9d21f10093d95bdd70c130291bfc3346ee3552845e875fbc"
+    },
+    {
+      "path": "pkg/config/testdata/directory-both-mcp/agents/main.md",
+      "sha256": "e7c5b036b775c4712bea0f5200b6be07416829f8eca509f33fd7a9eb89e2c78f",
+      "lfSha256": "7266d179b7c2adc03b16548a0dc13c30236ad950ae7a234563c7a02858e3b6db"
+    },
+    {
+      "path": "pkg/config/testdata/directory-both-mcp/mcp-servers.json",
+      "sha256": "78fd60d345263695a5c339b8f9b2460030e46877c3b91d25fe3fb69eff92950a",
+      "lfSha256": "0e28d027eafd62c7543d42338ddbfe33ed6c3e80fba38ad0c008b565d05f3b32"
+    },
+    {
+      "path": "pkg/config/testdata/directory-both-mcp/mcp-servers.yaml",
+      "sha256": "c986a437143db56d5bf6496a16c684d5020c6c69217344ffd6a3a3dc366c6b85",
+      "lfSha256": "fbc97cf96fc6b8bcc006c19b6c0b685ec655f868ca1a3ca5f85b5586f2666191"
+    },
+    {
+      "path": "pkg/config/testdata/directory-default-explicit/agents/alpha.md",
+      "sha256": "8624527a7c1723b49c9c74b02ce8941dc7e859a79a759e7dcbc9fa407487a7fd",
+      "lfSha256": "a7d6bfac9f9b3d5b0b4148f940d9b6c7bc45da6ebadc718d7b6c13923339356d"
+    },
+    {
+      "path": "pkg/config/testdata/directory-default-explicit/agents/zulu.md",
+      "sha256": "34c778b006eaae97eda64a79389dba9e853246391e5bd41bbb68b6f84cddb099",
+      "lfSha256": "bced66803b725197a3d1ae4004010c9be9f166efabd45461628e3b34b76775cd"
+    },
+    {
+      "path": "pkg/config/testdata/directory-default-explicit/mcp-servers.yaml",
+      "sha256": "a0531c4c4fff16a5672d92bc729dd03be3f6bff7be1a4547c9364aec4f44ba2c",
+      "lfSha256": "084f55fcc7e84dd867becfbd597b9603239431b8e68711c24411ebb0150c7da1"
+    },
+    {
+      "path": "pkg/config/testdata/directory-default-multiple-error/agents/first.md",
+      "sha256": "3b3a8c0405dd47ddfc95e8d6172803e45575975c61f6b20ea226fa26fd8f1f9c",
+      "lfSha256": "f880be0c75f495b56459dede9a9d148aee9fcd23930bdde79c027cd1cc9ded77"
+    },
+    {
+      "path": "pkg/config/testdata/directory-default-multiple-error/agents/second.md",
+      "sha256": "25869ad8539a468bd576e0fbbe988054e41842ffce5df2f3b676cbfe9baa4e00",
+      "lfSha256": "e2a9ac1f22a8f45a6b64ec18449184a3441ce0ffcb46ee6f666d4192977edcd5"
+    },
+    {
+      "path": "pkg/config/testdata/directory-default-multiple-error/mcp-servers.yaml",
+      "sha256": "a0531c4c4fff16a5672d92bc729dd03be3f6bff7be1a4547c9364aec4f44ba2c",
+      "lfSha256": "084f55fcc7e84dd867becfbd597b9603239431b8e68711c24411ebb0150c7da1"
+    },
+    {
+      "path": "pkg/config/testdata/directory-default-single/agents/agent.md",
+      "sha256": "da24a41991c1728046f18cb2cd3f44040cc11202c1271d6900eb266c754321df",
+      "lfSha256": "a8adb26b9104f8c79b5ddf27831e891e24c335ade4a84453325d22502fb19c8a"
+    },
+    {
+      "path": "pkg/config/testdata/directory-default-single/mcp-servers.yaml",
+      "sha256": "a0531c4c4fff16a5672d92bc729dd03be3f6bff7be1a4547c9364aec4f44ba2c",
+      "lfSha256": "084f55fcc7e84dd867becfbd597b9603239431b8e68711c24411ebb0150c7da1"
+    },
+    {
+      "path": "pkg/config/testdata/directory-default-subagent-error/agents/agent.md",
+      "sha256": "fe15bd80746b9400324a1afdefc05bdc035ebe75432a69ae3af0120e003b5aea",
+      "lfSha256": "3979dae72672a9424a6d76ce8448a5a90d8e1974a943df31e0b0ba46534a26b0"
+    },
+    {
+      "path": "pkg/config/testdata/directory-hidden/.hidden.md",
+      "sha256": "efa344da9dfbf46fddc9a56dd0f676e130abfda705e231389bb83d2433c06b6f",
+      "lfSha256": "c282663fccf38a84067d22d2f18126287ea307c71580803af96be93c8cc7d205"
+    },
+    {
+      "path": "pkg/config/testdata/directory-hidden/agents/main.md",
+      "sha256": "8749333027d87b82fb230cfb613ae8b35d289279201bc7e6d6d509da9d8fad2c",
+      "lfSha256": "f22cbca0745ee3d787702e958a7e20b9ba125a3e9c33835be96cf9358b8cb6e5"
+    },
+    {
+      "path": "pkg/config/testdata/directory-invalid-yaml/agents/bad.md",
+      "sha256": "8eeafdc7e1ec39009014777fde031db6dee716ccb4cb62be490e9243e63343f7",
+      "lfSha256": "6e561bd50a7c87b5285d1528e0ff10bdb99e7ba2aa0a5179ef708d2878c17292"
+    },
+    {
+      "path": "pkg/config/testdata/directory-json/agents/main.md",
+      "sha256": "56494d24d0ccca8f34bb4e14b4dba5b67625c2b457343742b507ca854c47808f",
+      "lfSha256": "6905611eab6149f134f65159aea89d2edb7708fbf2617ce58f287cee270c8b61"
+    },
+    {
+      "path": "pkg/config/testdata/directory-json/mcp-servers.json",
+      "sha256": "82f03bcae08fcd440476ced83fbd6208c4533beb935d452817c9de600a4911a7",
+      "lfSha256": "63ce5c76bc51bef467dea3a8f15c523344d3789468c3040013a4a56b106b146e"
+    },
+    {
+      "path": "pkg/config/testdata/directory-llm-providers-from-yaml/agents/main.md",
+      "sha256": "d4ff6a6b91533cd1dfaf254184f805c1b18510d00c06337eaebc404773f40439",
+      "lfSha256": "138bc8fb3d881785462093a961cd7f01751841e8225fd035d1d558103652831d"
+    },
+    {
+      "path": "pkg/config/testdata/directory-llm-providers-from-yaml/nanobot.yaml",
+      "sha256": "4a0ed1740b535e42b7bd730fbee63da7937f9982d8a29363d9492444a343624d",
+      "lfSha256": "37ae84685c10cf6418dbd21f7bba1efc69748acdce17a40fad200ffa84cf56b6"
+    },
+    {
+      "path": "pkg/config/testdata/directory-markdown-overrides-yaml/agents/main.md",
+      "sha256": "8393747d45e0ab630cb6735b3d93f254069467fca5cb23d0fe889611b1db1df4",
+      "lfSha256": "5abd1aa1bb75536a64597c09597ea4dfa438b79878aaa1059dac63f061556887"
+    },
+    {
+      "path": "pkg/config/testdata/directory-markdown-overrides-yaml/nanobot.yaml",
+      "sha256": "4ed735ebd4d546874e82dccfb0c5cbaec314c013aa406a4b66348f1da3c6c20e",
+      "lfSha256": "52001d78ce10c7e24932cf25119795c0bc1a96b9999485a58d2770dbf132c332"
+    },
+    {
+      "path": "pkg/config/testdata/directory-merge/agents/helper.md",
+      "sha256": "7556494cd9a075dd48a5fcaf2f3938f737712ca6ed25d1bb8425e083622fe8b6",
+      "lfSha256": "3d706e0e1869e0573ffb2dc4db081b8e1c31fc0744e909222c453f7fa1c28771"
+    },
+    {
+      "path": "pkg/config/testdata/directory-merge/agents/main.md",
+      "sha256": "e6bc9b12036882d2b9badb94ce34648292c969c71feac603464e23cb2fac7556",
+      "lfSha256": "de5fb518c8cc8fd4adad208ee129d17437a5f84761a43d1d9ca471d71d97d9cc"
+    },
+    {
+      "path": "pkg/config/testdata/directory-merge/mcp-servers.yaml",
+      "sha256": "1f0f79ce7e3ee60ed25e94a3268c45ccb2aaf19355b5a3dce310dd22441ecd26",
+      "lfSha256": "c1451d8cf7683440ed08138a661eed60e515a3ec002953abbf75a128d71ed8f9"
+    },
+    {
+      "path": "pkg/config/testdata/directory-merge/nanobot.yaml",
+      "sha256": "491544bd59ba79730b5ef1f09c011a331cd1d573a1eb7613acceed6aecf5ee43",
+      "lfSha256": "1f768d7104e2d6f9a1d35411e2f6661bb713fc6a6f1bc0ad7aeff5aa7c34b7c4"
+    },
+    {
+      "path": "pkg/config/testdata/directory-missing-server/agents/agent.md",
+      "sha256": "f31ca65d6596166e3a151a6522146bc3369e173667e18312b37ef72bc4c15e6c",
+      "lfSha256": "5279a68002952379c08122e7a30f5bb678b7dceb200535a1bfb8c80a94627079"
+    },
+    {
+      "path": "pkg/config/testdata/directory-missing-server/mcp-servers.yaml",
+      "sha256": "8e781c9485079f677216838f6743b1172c5baf8dd8f9d4d2c02c9af05743d3ae",
+      "lfSha256": "c91520a939d7b3743258c1a188697f9634cabbe8ecf2a349d36df9df3776ba69"
+    },
+    {
+      "path": "pkg/config/testdata/directory-mode-all/agents/agent.md",
+      "sha256": "1ba7ca29e2eb8279ab583f0f608aed8806cae865e0f3462a912f13793cfb3e74",
+      "lfSha256": "b80e7845866b4ef187cde25f3d8f481e39656923ec712ce5652c70adc8b4df6c"
+    },
+    {
+      "path": "pkg/config/testdata/directory-mode-chat/agents/agent.md",
+      "sha256": "b04aa79df661c0245a31ebb679a5cb4bc0a600134a062187a02a097445583492",
+      "lfSha256": "056474f42e9bcf22e977a049e928c40513b9a06ddcbee36d6f05d7a6c393365e"
+    },
+    {
+      "path": "pkg/config/testdata/directory-mode-invalid/agents/agent.md",
+      "sha256": "966d6da9a9f41d656465397c35ba9382a336fbd8f8be1f36e70c5a5a2bf03d45",
+      "lfSha256": "5bf67c954ec4969a033b665f73df812c0da569712e0f25bc5e2100ca401dc3b2"
+    },
+    {
+      "path": "pkg/config/testdata/directory-mode-mixed/agents/chat.md",
+      "sha256": "6299e6caa92e2a681a81502d1a9c2a61d83f810016eecefa45e4ac460fb2cb42",
+      "lfSha256": "a560e9e4d8bb0029abb100c0923ed60b79b17ef7bc3fe39c262e73de89efb2bc"
+    },
+    {
+      "path": "pkg/config/testdata/directory-mode-mixed/agents/helper.md",
+      "sha256": "cda07d7bcb1bcd7ce4e7cf5da68cdb7fa676b8e83ab8def9744b57b2646c8528",
+      "lfSha256": "4cef9801803ca39dca05094ca62b6a16893e5ed7dd7b1e73bb2239d510005fee"
+    },
+    {
+      "path": "pkg/config/testdata/directory-mode-mixed/agents/primary.md",
+      "sha256": "f17df69bfb4111deec3ae03ccce15a6c50d78f61cc39ced4a6540936df9c572a",
+      "lfSha256": "e3ad2122d35b969df449a449553cc94a13c4f504778981a9bf79ba2acdc90396"
+    },
+    {
+      "path": "pkg/config/testdata/directory-mode-primary/agents/agent.md",
+      "sha256": "46b90565474815870ef3a010c1e78a0463afaa6f4f747bc570b283a77d6f63b0",
+      "lfSha256": "14a6acb278910b19b0753b67bdff73ed09a67905800ef47cc9c514bcb646db80"
+    },
+    {
+      "path": "pkg/config/testdata/directory-mode-subagent/agents/helper.md",
+      "sha256": "9ece884841b5208af4fd654fdb37efbbbcceb9907d365506a1c8f512041e950c",
+      "lfSha256": "ce24573b80878a23096904b7b0c0b4509ead96d488427e77411df46c979d8048"
+    },
+    {
+      "path": "pkg/config/testdata/directory-mode-subagent/agents/primary.md",
+      "sha256": "405042556b887ac201fd99283a7aaf4118ababe62c1fcc098d5643462e303d29",
+      "lfSha256": "abcc393cb7efc3340d649b4157488e795c3fabd52f25d6b58cadafd5417b7a8b"
+    },
+    {
+      "path": "pkg/config/testdata/directory-multiple/agents/helper.md",
+      "sha256": "a50131b1721d0bd97104c5dd6df82bbb77ba6b96748d69791bd707f1ffa3b740",
+      "lfSha256": "45c79cef720947361b9a0a74564471a3855e63402bbba781928a1ccff51d2fe5"
+    },
+    {
+      "path": "pkg/config/testdata/directory-multiple/agents/main.md",
+      "sha256": "55e5570e90eb51c14a9d3cdb5fd47d2821e69094630d0e3c7cfd2757af3ac068",
+      "lfSha256": "24ab961b8bc0cf0716be283b27181662b55ad6fd62e2c3c8bffab82839ffb555"
+    },
+    {
+      "path": "pkg/config/testdata/directory-multiple/mcp-servers.yaml",
+      "sha256": "3b28381382249c86453fba78b74d77a3667374f35c0951daab63a09091b58738",
+      "lfSha256": "03817c1828e28eca7a4a92e77605dffd5d58302417a8fe0f4a5cca45d9e41989"
+    },
+    {
+      "path": "pkg/config/testdata/directory-no-mcp/agents/main.md",
+      "sha256": "e534f367d3b30b2daa31f2d7684c723c2f9ec886c989b3c1e661dad043fd36b3",
+      "lfSha256": "cf1baf7f7517e871c194b31d941c752b2bbdd9380e3ccea2421085d670ecf494"
+    },
+    {
+      "path": "pkg/config/testdata/directory-permissions/agents/main.md",
+      "sha256": "dac389f3ea90e5fb6ae8f151b088151b27859188ae0e8382011ceb34f4fa214e",
+      "lfSha256": "4a7d0ce25b92364b4f54a4f0bc4c55ace41d35bb7ed9334a3b6dfed5334d1591"
+    },
+    {
+      "path": "pkg/config/testdata/directory-simple/agents/main.md",
+      "sha256": "8fa19324a042aff17d83aaa335414eabc864a62ae8561a33a38d1624eafddba4",
+      "lfSha256": "eec4711a2fbad786508d62438b4e268eda294e827a68d508a885750967dc79f7"
+    },
+    {
+      "path": "pkg/config/testdata/directory-simple/mcp-servers.yaml",
+      "sha256": "0e0562ff41683d5d00809423544e69c3870325d0296e62977b226399b8ab05e1",
+      "lfSha256": "a8fea79c9f63b97e8e60d45f1364e1bbff5dc35488c3a7b5f566f2e3936c7c4b"
+    },
+    {
+      "path": "pkg/config/testdata/directory-with-readme/agents/main.md",
+      "sha256": "c3427fed7d7f2e223b9ac7d1ccbc4af389311255edc0779830169629a3390010",
+      "lfSha256": "3b68b310f6b3ff0e831d413fb55a038417061edd797f080449dbbe906840ebfc"
+    },
+    {
+      "path": "pkg/config/testdata/directory-with-readme/agents/README.md",
+      "sha256": "c8d615f0f00aaad1cd52db698f6b2e38a313a0da8bd857c63c719c299b720119",
+      "lfSha256": "2568d1785685fe0ce4d134e818295ee8591f42276e488fbdfb6c0c5ff2665047"
+    },
+    {
+      "path": "pkg/config/testdata/directory-yaml-and-markdown/agents/main.md",
+      "sha256": "2418a300acc91a2e255d9f89199aafdaeb2deab379e9c309aa00a9f7f440c917",
+      "lfSha256": "2eeb57b02bdd5b663626e0bd2bb4bf19448e048837d185df1b9aaf3cc35f727d"
+    },
+    {
+      "path": "pkg/config/testdata/directory-yaml-and-markdown/nanobot.yaml",
+      "sha256": "31718bef4b751e46fdca245c779467d58cb0e9b72e29e7033b42c7d888249520",
+      "lfSha256": "dca190e9773f357f6a97b062abc3d25f849e31c132eded4f7157ad701ce0b90e"
+    },
+    {
+      "path": "pkg/config/testdata/frontmatter-permissions/test.md",
+      "sha256": "2e31c5b1857b1ab45f201ab07e0a97b9448c51b2d7aeb76a34cd29618935a9a7",
+      "lfSha256": "ad5c1fe41f8f2db9ea00da51af08a558c2a3f60a1a6c819fb809f136c98c483d"
+    },
+    {
+      "path": "pkg/config/testdata/resolver-yaml-only/nanobot.yaml",
+      "sha256": "c46a76e56e8c0d47f7f13346f9f6b6bf27637220acf41e9d75b56cc7a6003bd0",
+      "lfSha256": "fce819c0be517c1a26c6f4a3e20e8f0fd519e9b67e80aba10ab3d2730bbde566"
+    },
+    {
+      "path": "pkg/confirm/confirm.go",
+      "sha256": "0e994d78566b5b96bf5397b30de6b0bac7b6a4dc17c88a22a27aa15cc665b5bf",
+      "lfSha256": "2011d0c0f1751516772c2a5f7dd981146684388731065dc3956936b880459ab3"
+    },
+    {
+      "path": "pkg/envvar/replace.go",
+      "sha256": "e4915dfbabbbe1529f9a43bc6857336377f1f9e7706dc87c472d0bf5e26a1079",
+      "lfSha256": "b1b111e1196170e853d3f662c08a7ad4cfb17a5dc7993b98630a0a765b13c54c"
+    },
+    {
+      "path": "pkg/expr/eval.go",
+      "sha256": "b4efc1581125aae44cefca8b19f054aec086a0400e82abfb2a1813f158a19e5c",
+      "lfSha256": "b43feea87a8ce6260e07cadf7fb2e6fab6ba43c718f6d25f37a624a036dbba19"
+    },
+    {
+      "path": "pkg/expr/expand.go",
+      "sha256": "125ca4696a4e24fbf79b516e02b49f4b81a4106a4e7ab3b2b473dcfae50b0b3a",
+      "lfSha256": "ce739e67687fc628868a0065d90d4304c1edfef401ba414b60f6099f02039ecc"
+    },
+    {
+      "path": "pkg/expr/expand_test.go",
+      "sha256": "05dde171b263d0b772f3c40c2794ff57e1263bbb790789aa6fdf8d9766e3c79a",
+      "lfSha256": "4697831502ce1181876e8218942003add1f6aaf656460002de0cf7f81e1b5292"
+    },
+    {
+      "path": "pkg/expr/lookup.go",
+      "sha256": "b43f171941d16eb0518077ffc383dd55dc393dffc439ca73f97b7e13026e8f38",
+      "lfSha256": "fa8b75f545da2b2d51af58a294711069f7863434681a9f77182e460fbcf379f2"
+    },
+    {
+      "path": "pkg/fileuri/fileuri.go",
+      "sha256": "01542c08a85e560db5aa66eaad2fbe2f088deec1514e4c682e3601edd2ff7e8e",
+      "lfSha256": "b3dc2a85679ab32461077afc899849bc45a4e87014d0c0fcd889a3d2e5b1b25e"
+    },
+    {
+      "path": "pkg/fileuri/fileuri_test.go",
+      "sha256": "ae27dd06012efdc805959724cc243563c2254b794f85bf95b3cba838ec973b39",
+      "lfSha256": "208356c2b49ebbce89e60e824c9c52445b852c2456b8ad611525e079a86eacea"
+    },
+    {
+      "path": "pkg/fswatch/fswatch_test.go",
+      "sha256": "87ea2ba29e580d879c3ceefd9d471ca6e614827fdf0a09fddafe07b27c95c8ff",
+      "lfSha256": "4c1a86f9f7f4d03d7df3093f76a2ac50f0b2116d3c2947df80c30eb4e34c83b0"
+    },
+    {
+      "path": "pkg/fswatch/subscriptions.go",
+      "sha256": "c6240703f18f92a9ce160246f055b8d2df640a4e1e2cf7255ed7b5987143e322",
+      "lfSha256": "f182f48231f51747507c29525dac982df78cae7c35c6518f7a7abcebbcdc8f78"
+    },
+    {
+      "path": "pkg/fswatch/watcher.go",
+      "sha256": "b95aee84fa16543600212cf3c72b4143c84c1f9449b1daa124630bc24930495b",
+      "lfSha256": "17936371f96cfd89349af3d58f1705fe12e72bbe65362c92543547707c54381d"
+    },
+    {
+      "path": "pkg/gormdsn/dsn.go",
+      "sha256": "ddc4c89c28a48ec6f8ab890f1a736eb0412ada444cd82f2a9c2425acca3799e9",
+      "lfSha256": "445e059dde6e990e07baa9e298b6fcb4530f43b86df46ec4b96d2f4f4304c1ff"
+    },
+    {
+      "path": "pkg/gormdsn/dsn_test.go",
+      "sha256": "59f8ae1d536ab31be601f3926a88cb434a85e551cadbef6e00758eb2f3bcae4b",
+      "lfSha256": "74fda31a38d768ada17562d221a9654b1124b8da30c3323f53c53e4566fccd5d"
+    },
+    {
+      "path": "pkg/llm/anthropic/client.go",
+      "sha256": "74329e115f4f235467ee53a3beec498b639950c01b6280e9d3094cb8b98d202e",
+      "lfSha256": "9c54137c6006f68b84f053551f1f2fe86272cb274d7c8227491679078d537d93"
+    },
+    {
+      "path": "pkg/llm/anthropic/translate.go",
+      "sha256": "11c60f822a9c4b85296f5a9b0768ab845a20692eb9d615bca5a9f0a88daf45df",
+      "lfSha256": "8fa4fdff60217d980d1dbc4a1113f97edf64c5f71d169159e7d8018afa3bbd29"
+    },
+    {
+      "path": "pkg/llm/anthropic/translate_test.go",
+      "sha256": "fc0b4e4a928668c837f65118c66754dddad6450e219249ac640886bee508558a",
+      "lfSha256": "655491c2245d0a06b528671a946e1c0a3b1675c724a08e5d20e992f4b87770ed"
+    },
+    {
+      "path": "pkg/llm/anthropic/types.go",
+      "sha256": "f0d17f365b5529084286d4c67557008010f59da7494e0e074ea750233accf9cd",
+      "lfSha256": "8b5a66304cca1077679844b08421b8c53a0c93a7ce7845c5c8b0b78a876a5b89"
+    },
+    {
+      "path": "pkg/llm/client.go",
+      "sha256": "fed967d79fe0f072816b9120e7f374f4b188fdc562c7c8cccbe764c82f48519e",
+      "lfSha256": "0d6c747c635e87f13761697cc9de0be7e879f241cc9817c641f43871d1fac5df"
+    },
+    {
+      "path": "pkg/llm/client_test.go",
+      "sha256": "dac114daf05d97941ec092936081ecf841ddeea2873742edf107e7e9a169b800",
+      "lfSha256": "e499cfb6f5258b7a94910bda7f558ecb67b42c74d7d5f5b5c63d67a671bca917"
+    },
+    {
+      "path": "pkg/llm/completions/client.go",
+      "sha256": "041f811784066865fa88100148ef8d00cbd128de289367cad24c00c0ce6baeea",
+      "lfSha256": "6dc0bfdac64453684874eac0e96c7fc3751019d4bccf7aa900efd8603b3e7e24"
+    },
+    {
+      "path": "pkg/llm/completions/translate.go",
+      "sha256": "446491bad061b8fa5898f74c29a0a84be950694484debd815a49a78c0dca9092",
+      "lfSha256": "8f333a5a4db69d0256c98285c37768c28fd29b01afb56fae7bbcd914f4fed84b"
+    },
+    {
+      "path": "pkg/llm/completions/types.go",
+      "sha256": "861286128c8b680e1cb196006698c1cf4ae2e940ff5f3adbc183ef6d4596b4c6",
+      "lfSha256": "41a259b67c94b7b8e58b45005cfc559918f9dfd5833932e70859b8246830f6ca"
+    },
+    {
+      "path": "pkg/llm/progress/send.go",
+      "sha256": "a843fc0dfa8cec55c4fd6aed3c750fcef8f973ded35f477b6759a6dce99e814f",
+      "lfSha256": "f2790cbccd978605cb600f16876f2dd66bf39c17acd0d703e4ce5b3457b798c6"
+    },
+    {
+      "path": "pkg/llm/responses/client.go",
+      "sha256": "99bcb30f59cd8f6b32997e45df8d7c89d86689f9322bddcf402128f4f0a9d053",
+      "lfSha256": "19d0c155bea0b0a2d9d8ec334fe697f13de0a338cb42f46d4d0f48b8c38fa7e8"
+    },
+    {
+      "path": "pkg/llm/responses/client_test.go",
+      "sha256": "0e45488454d06037742cb6923545d1e7d3232445f7c5a6ef4e3a6ee01f975d54",
+      "lfSha256": "6de5c5b8fb3f8c4535bff26abe1d1a56ffd9ca7022c1233d54fa6c8d9ff116ff"
+    },
+    {
+      "path": "pkg/llm/responses/progress.go",
+      "sha256": "76b9c65a859feb407c8c0c34d528ac5dcd29008b871fe1d5cf42f69704daaaf7",
+      "lfSha256": "301bc8ca9149aa00c288872e263fa1ece6bca668161f5c7e5da73e3ba2bc720b"
+    },
+    {
+      "path": "pkg/llm/responses/translate.go",
+      "sha256": "8f4e38c9e169db6152d88fd1f26d9b5121353afb6826d8a35f9a8bf60b887e9a",
+      "lfSha256": "7664ce3ed28ed324acf76523b493ed247fa8656b766b6a922e9e81592c985729"
+    },
+    {
+      "path": "pkg/llm/responses/translate_test.go",
+      "sha256": "54c889e41c3413388d6566e9f495055cb9ee0abed5b6f2ad1410c3691f0a2dff",
+      "lfSha256": "44e4f42f3bbcf60e93f2c66247b3910e164157e6f7075f2957376afb62ce6414"
+    },
+    {
+      "path": "pkg/llm/responses/types.go",
+      "sha256": "ec35f700435beedd0a00378f664324bd305d1d9892d7c9cfaac37ab794fdd05d",
+      "lfSha256": "e9624d8f972ccbbd0e3bf45fd92f519ab54aad997477b165aeebdb554e720967"
+    },
+    {
+      "path": "pkg/log/log.go",
+      "sha256": "f69b5aac9ba9a062b90a1734462ad12071ef6b22fa539fee5dd221e7bb2477bc",
+      "lfSha256": "c76da198573d5ee7f5a181dc154a5e4d4023690c23a221c0795ab0c12cb48272"
+    },
+    {
+      "path": "pkg/log/log_test.go",
+      "sha256": "3a05cf34f6a2849db20c98a827080b20f13165a1eead620a4f32b3157422a0e3",
+      "lfSha256": "75b05c4b3856924330eb3a6f160b013bb8d5d58762fe964c7d542323c40c48a0"
+    },
+    {
+      "path": "pkg/mcp/auditlogs/auditlog.go",
+      "sha256": "2e2ec7bbb069c444d08d1c663370309285f0552dff8b3f05b811e2e809963c35",
+      "lfSha256": "6d063cd082517c778f1e716de00328f4a7603a525715236561dc9172fa557f0a"
+    },
+    {
+      "path": "pkg/mcp/auditlogs/auditlog_test.go",
+      "sha256": "a41a4008b6d00dd42ae39ca0bfe54284062e970f812e83c556fc0da93892142e",
+      "lfSha256": "c7c22bba8eed917b04e5f8e3c4e30bc2a277f78b3dfeb10776dfdb1d8402fb87"
+    },
+    {
+      "path": "pkg/mcp/auditlogs/collector.go",
+      "sha256": "abd736d44e8825a452bd1968a5ae9e0a806a355b196dabdc8671b776c52852ab",
+      "lfSha256": "78bcfa97e9633186f8e0b9a701264e19d11c4fd1df131182f4503dc22c6522a1"
+    },
+    {
+      "path": "pkg/mcp/auditlogs/noop.go",
+      "sha256": "6efe97b8d37e40bb853574949f92f2a6497dca123ed06b7e68e3b2b1d35c9218",
+      "lfSha256": "31b62c0e68a04c1dc71dd8421e8af9c5dcac11b06c358e0b799cafdce64358c6"
+    },
+    {
+      "path": "pkg/mcp/callback.go",
+      "sha256": "ddafe703fa9edec51464ddaf8d1f4765a79e0ac7af02981b32c240bcf566f987",
+      "lfSha256": "3d9808dd92aeec66c14adb854ba39eed9ac35f5d806d16cdf4b06bb7e63491c2"
+    },
+    {
+      "path": "pkg/mcp/client.go",
+      "sha256": "7fff41ec0098aab3c676c616b00b70f87f4264b0684ca1a4f9291c6400a85489",
+      "lfSha256": "bdbd6f172192935fe6d41336211d695e9b1ea58e27e10502e179fb81a5804a2f"
+    },
+    {
+      "path": "pkg/mcp/clientlookup.go",
+      "sha256": "423ddf3a0c12993307314e4a528bd8fec7067d84439bc62b11990c96fbbe3d5b",
+      "lfSha256": "ddd821947773ef8015e973f9a15364bc46c580e8447ee6132bc399bed7db71c0"
+    },
+    {
+      "path": "pkg/mcp/client_test.go",
+      "sha256": "e028ab03244f77409d545cef9b6469762a614d33cd8ab69fde3436064ef2fb9f",
+      "lfSha256": "bf0b9a0d3abbd7d210cfb0bbdd2402f8ba3f13f46aa94865226131ff7d00f461"
+    },
+    {
+      "path": "pkg/mcp/context.go",
+      "sha256": "bf47db64ec4f31e6af5b9f05a91fd3cb7deaf43659a6b66318ad007b6b4d19a9",
+      "lfSha256": "b1b7b31d282d106443c6350bd0bd2a8480e833f17bae44200c5c25ce3a0ed763"
+    },
+    {
+      "path": "pkg/mcp/error.go",
+      "sha256": "be7ce4092e49169a84b6750c8eede101b4821555cce19c70feeca31b3d92f504",
+      "lfSha256": "0b67aa202fb54ae4d2a5ec528346d64e7b7e0ac6a429a63667adbcb626601ac2"
+    },
+    {
+      "path": "pkg/mcp/hooks.go",
+      "sha256": "e1d4ac2a0912e192ef79a804893263fbc9d87fa6a07fd0f1751c237287a3d59f",
+      "lfSha256": "4ac1df88f4a8ddbb39363669870d8a7485f1b0170a6ceca64a0be9d40b83cbd9"
+    },
+    {
+      "path": "pkg/mcp/httpclient.go",
+      "sha256": "660f9e477aad3d94b629aa5ffd6ce1d0075c7934e2dc683d50387ef38429f510",
+      "lfSha256": "24411548f0c523e96909ed6cd4663e597e49393001a7aa748ae61c15e1fed37c"
+    },
+    {
+      "path": "pkg/mcp/httpclient_test.go",
+      "sha256": "0a60b7fd2c9876cb85b7e66b6d8043b8033b6ce4d53b3d02b8e97454b514ce9a",
+      "lfSha256": "1c2710cf01bbe2cce5b0b4515f55af2fd875f0e9ee70d7b0a35f06e73ea6b54b"
+    },
+    {
+      "path": "pkg/mcp/httpserver.go",
+      "sha256": "a4f976109f8d34b2dd13eebc1b7a7ed601a8bb7e990a78c6dfcf784d0ab8c349",
+      "lfSha256": "af92765b110dee6432071e871003ce792a2c6480febfdf34c251c5f20b279ea7"
+    },
+    {
+      "path": "pkg/mcp/httpserver_test.go",
+      "sha256": "d28e6bbddbbe90a68eb4bb32af996fc9d1d80a141c23c43214247182e446361d",
+      "lfSha256": "7f8c21920b0d588edb2727cca39eac8646841492027d13639b0b0acf1a185d11"
+    },
+    {
+      "path": "pkg/mcp/logging.go",
+      "sha256": "3f4c607de79f8c5b6fdefd997d5f44b6b7d3e061c01546088146e9ffb4aad87a",
+      "lfSha256": "58c714c50ef49070dfe0c9a32a24b96fa692ea4d116a775ca30391247b9499ce"
+    },
+    {
+      "path": "pkg/mcp/message.go",
+      "sha256": "c581978a0cb1b1d62fd0e83737a2b2ea27c699b293c5988857d7efccd15efac2",
+      "lfSha256": "fcbe14f73e08e16c40012eae7efe4949bd367819e6a977bfa3d6690a10bc80ea"
+    },
+    {
+      "path": "pkg/mcp/oauth.go",
+      "sha256": "b02328f9c8cb6b39930c7d5430b43c3b6d3a8cc7ab0d6f62eba10bd496eb11b7",
+      "lfSha256": "4764cfca2ac4701b42c2a1a959441894d7f9e780bb83b3ef6df8041092674f0b"
+    },
+    {
+      "path": "pkg/mcp/oauth_test.go",
+      "sha256": "c32971a14793e61cdfe93dfcbb1d222d8f02355cf0255edd41ed435354311bd7",
+      "lfSha256": "4c9925782e35d1cf8aaecc7adf8eb19d3f20326ac998594f99e6df8ee52a2afb"
+    },
+    {
+      "path": "pkg/mcp/pendingrequest.go",
+      "sha256": "6cf1a32e5bbc5fa7da2677271b8e5b8aca6373df09c1381c7d8ed87572fd7910",
+      "lfSha256": "ad9afe679948a60aa7671566771af59194dab34574b78c6dee0cf0a23113f9ca"
+    },
+    {
+      "path": "pkg/mcp/runner.go",
+      "sha256": "51dbe904dc9ef0721a725aaf346e6f03bb01eae043735f41f69f3000a4986515",
+      "lfSha256": "1e442ba324cc92104ea6bee5788525e926a63c28b426f5ff36ea3a0e6858f09a"
+    },
+    {
+      "path": "pkg/mcp/sandbox/out.go",
+      "sha256": "8a5bea5e3a2b02542002edf53817ac3354e6f91bd98084ed5baf93d955dff392",
+      "lfSha256": "d459c365323484c5b9159321fc6f3a508aae483b0012d02fd5030eb912ecbb79"
+    },
+    {
+      "path": "pkg/mcp/sandbox/reverseports.go",
+      "sha256": "d75fa49554220374438027f49d4c2412586cfb39289ab3a2d926c49b48dfa96b",
+      "lfSha256": "bf9b48dac3a0cb057546e5cd79d37b45a171f7c731d164e02036fd40a422cba5"
+    },
+    {
+      "path": "pkg/mcp/sandbox/sandbox.go",
+      "sha256": "fbc5b25ef3db4a8bee58907264d57dcba43f9edabced1422cae0fb2a39b938ad",
+      "lfSha256": "7edca833a0f886dec125674027f5677f54b7351e9f57bf9c20b6f38bc94a3d4b"
+    },
+    {
+      "path": "pkg/mcp/serversession.go",
+      "sha256": "6ee8ce8b7131ea00e3807833f27f483e6ab1fe2e8acfb52716db6ebbe001d213",
+      "lfSha256": "c5ee960a740a8cb9cf810689fdffbcd75403816dd8df455fd350a4374bd0d53e"
+    },
+    {
+      "path": "pkg/mcp/servertools.go",
+      "sha256": "627326ffbf26c2a646e79feeef6f09a9527ea0618c14e93fbee9f243a9d0792b",
+      "lfSha256": "9faa73a0f3108ec0439341de577dded4d70f8f912451dde01ce62cb53583f810"
+    },
+    {
+      "path": "pkg/mcp/session.go",
+      "sha256": "c7a626793780911e7d360534d5accbec78cfabb61dabc2556a678be8f062643c",
+      "lfSha256": "72ce2397dd14a3d842bc9e734fc1ff43d480536d89aeffaebf046a3a7e3bc3dc"
+    },
+    {
+      "path": "pkg/mcp/sessionstore.go",
+      "sha256": "82c27b31ad0d169d136c3b0c1ba0be8c1f1c20aa1f327ae284e705a6e9c3150d",
+      "lfSha256": "8160ae0eeccfb2847ae697bd400c8b87de93484f3016ac36e0ecf80fccd5c274"
+    },
+    {
+      "path": "pkg/mcp/session_test.go",
+      "sha256": "79054f08aed7ce8ac9e5a1dbeacb532da9d7f3c3b682fc3ee051002a984085da",
+      "lfSha256": "3a75b26f1240e6c041ade4bb2aae9a7e94ba396528d055dfbf499a9c12197854"
+    },
+    {
+      "path": "pkg/mcp/stdio.go",
+      "sha256": "273a89c9f7c5984238e8f0851d8427d77885e85fcf6507d4c8ea979d74913bb7",
+      "lfSha256": "6d244330670bba7facb999118a40248773e3c5638309ea4689744f07e285cd0b"
+    },
+    {
+      "path": "pkg/mcp/stdioserver.go",
+      "sha256": "918ad29c63a5aa19dc3d9596594f000e4840f98ed78b04b696144abe1e301c23",
+      "lfSha256": "337508f3115f96a501762b84c1249e93cb48d841c1445ae4f424070190ddaa1a"
+    },
+    {
+      "path": "pkg/mcp/tokenstorage.go",
+      "sha256": "6632df25fcd808fcbe83c1ea9c1063dcfdbaf0d1d7d2b2cb591074a2c524ff75",
+      "lfSha256": "6efd7380b4e2b400fb04d7425552d090eebec05fbacfba72c845b1a8dfd032ae"
+    },
+    {
+      "path": "pkg/mcp/tracecontext.go",
+      "sha256": "02366b7232b970fb303fe9d343c2e59cd99447f1ad3a9dd5516eeb70ba8304fb",
+      "lfSha256": "392a09f1bfa7d6f2923adbc2657991d2da05dd1e4bd523b9946979ddccef8c76"
+    },
+    {
+      "path": "pkg/mcp/tracecontext_test.go",
+      "sha256": "c00387f17094e3b3a7fd6f3d384a6334cd2832d324e056114731caa86754c8f3",
+      "lfSha256": "38f071569693c01891a684809a7bdf4e38eac1b2513573bd8a2331731a21404f"
+    },
+    {
+      "path": "pkg/mcp/types.go",
+      "sha256": "5a951602e737cb7a5174a2317352e874207ba6aaf7c6b548bda1aa7550b59272",
+      "lfSha256": "46197ef43fcc2026d486f404c6e32c2892495a5bd22c993b64b0338b44c9cf1b"
+    },
+    {
+      "path": "pkg/mcp/wellknown.go",
+      "sha256": "43d63a3d2118f7f7092a9e867c2f63c6e22e699bf5f569f16bdce0a6f93df481",
+      "lfSha256": "87210fd5c983041c96c3aae0c096e4127cc6abc986052ed244837d386d4362b2"
+    },
+    {
+      "path": "pkg/reverseproxy/server.go",
+      "sha256": "4e21aa8d577aaf3fd6307ac62c8414e7c85aca61869b21804a02ac23940d5aca",
+      "lfSha256": "639d5286aee9fb359f644d3e77988f2d21a4870e49f96c4bf0bb1b0c736abb2f"
+    },
+    {
+      "path": "pkg/reverseproxy/tlsclient.go",
+      "sha256": "5ff7d28c0a48cd71a00ae458ec0dd5a59ca46aa9de3543090d5486f27d5d5d31",
+      "lfSha256": "942514ec6d7a903acf1ecced7943a7b8a6931fbf267796401b15b79b95403fdc"
+    },
+    {
+      "path": "pkg/runtime/runtime.go",
+      "sha256": "dedd42b89f26f67ad95dee6a2ab8c2a176182cd0ed69605e037ac248dadb76d0",
+      "lfSha256": "7505b3e1928ef6245b2343611a7ead3cb1f8e6b2c6ee967a99a70b33583891b9"
+    },
+    {
+      "path": "pkg/safehttp/client.go",
+      "sha256": "127aa5fd763e173a631053ee853fb94863608d16d6898ac3bb3c38cf0e5d626d",
+      "lfSha256": "c0a11cc229665fc7330293146b62673325321befd57374d0684cec366552e9a9"
+    },
+    {
+      "path": "pkg/safehttp/client_test.go",
+      "sha256": "7db08b392b8b5a160b7320f6e5f4d4a0c0ca794bfaa8da11f136f6ee6e9675f6",
+      "lfSha256": "fa426a3d8f15eba4bb5117380ec31a3ef7ad92d1066f29ab48cbbd065af27a96"
+    },
+    {
+      "path": "pkg/sampling/sampler.go",
+      "sha256": "c21e1bc4f07885d39f401abaae71e31c0a2d5cf1714649d213481bc2fa82f446",
+      "lfSha256": "f0984b28a25f1619aed872f83128a7f878ff23cd2f750fa4f711e7b0a09e352e"
+    },
+    {
+      "path": "pkg/sampling/sampler_test.go",
+      "sha256": "a9d111cd0f3fd3239c1b0061679e338482f25d7ead99199f9c8aec9220dbfc3c",
+      "lfSha256": "0b514994e9769684926979f0c5d95582c12bc3dcdd06f4961d834682eb8cf062"
+    },
+    {
+      "path": "pkg/schema/validation.go",
+      "sha256": "73addf8cc1fe708ff8f2ebd125d3f99cface71e5ea881f8014de59a38c44d69b",
+      "lfSha256": "a26e239b0ab81c356f04bf46e01c2fc91db842566a8a575a4e6ffb4c9ca56307"
+    },
+    {
+      "path": "pkg/server/server.go",
+      "sha256": "741701c39201d0e9fb7a93233ec9f61b069d906f5e3c7e53784730637e31d163",
+      "lfSha256": "837af4e0f87a980deb2dc61371af559ab85637bb180f446f7409bd3c1e3a4d65"
+    },
+    {
+      "path": "pkg/servers/agent/agent.go",
+      "sha256": "b9c60a41b70a130868875d6c9826570a2e76ddb004a2840a0dbde01e2f71d179",
+      "lfSha256": "55b7b66418e9ac72b5d9a87b6f25e64f946448e77e3377b8840b5fe4c1c6876f"
+    },
+    {
+      "path": "pkg/servers/agent/chat_call.go",
+      "sha256": "6d7018f4f128f472655a1dac0c0cbd5b2f4c1c4b0a451674e904aec02834e1d5",
+      "lfSha256": "810aa0011da9e923546cb875cfca22cc425224d8debce2b0ce3a28068c442b19"
+    },
+    {
+      "path": "pkg/servers/agent/chat_call_ui.go",
+      "sha256": "c356a886b71917a44b1f129ab88bc9f1b610f36fcde5cefd151b66788ea4d8c1",
+      "lfSha256": "141c774cf315c705111c82720cbe33d414fba17fe88ca2ea232bebff1983a767"
+    },
+    {
+      "path": "pkg/servers/agent/elicitation.go",
+      "sha256": "3c6159f89a49d61fe42c9853a5b48ccaffafbed28df750a18f0947d145efc5b3",
+      "lfSha256": "d2b6ee08b3655a3805fd00e203d933d64ed91d5fc4c2aa04c24ad4f59124570c"
+    },
+    {
+      "path": "pkg/servers/artifacts/install.go",
+      "sha256": "d02a5938d16f169f5e19461b0472a3259a3d63811aaa00b64e73bb9b09ae81d9",
+      "lfSha256": "0d5f47b36628542a20e42d1eb3f6b00a99ccfb5746a9c826c5688531b6816eb7"
+    },
+    {
+      "path": "pkg/servers/artifacts/install_test.go",
+      "sha256": "b624bf7b4f1bd789177dd08fe01b712f1e50dd4813dff125bb5462bcc6557671",
+      "lfSha256": "65307229e5aea34b36a5a240df71a262306c84105a51a5dd49207fad81d89320"
+    },
+    {
+      "path": "pkg/servers/artifacts/publish.go",
+      "sha256": "c8ece0f53d3b82865a82821586c02d5d581adf0c351c6a6669a58080e51b2218",
+      "lfSha256": "4140ceeffcc785528ab8cbc4d8ac07dc56d158eb449629225dfbcd3998de0d75"
+    },
+    {
+      "path": "pkg/servers/artifacts/publish_test.go",
+      "sha256": "a7ff034f21870817d10872ae28c5bd11d1d1993b483e93276dc9487a8735dfa3",
+      "lfSha256": "23355f54f61e966d61b99f1bdcb1eae86a6aebb47d4153a1812848b0ca19327a"
+    },
+    {
+      "path": "pkg/servers/artifacts/search.go",
+      "sha256": "c93063e690045a44254e56171c8b7f349cc5e7f266729c2c90c6eafe18f66618",
+      "lfSha256": "bdf995f767da28fbc1f1145a30a4e9b7d22898b6627625b0b9b82f68470c93d3"
+    },
+    {
+      "path": "pkg/servers/artifacts/server.go",
+      "sha256": "df5eb07cb6ce2985da10eabd5137ffd4d9e33f2a01a0830b3e7c749006b4f1cc",
+      "lfSha256": "6e062e85cb35a7ff4c51367f890928203f03940add5158a65cba721ece77c8f2"
+    },
+    {
+      "path": "pkg/servers/artifacts/sharing.go",
+      "sha256": "45a6f8370d6f3f1d874763fdfe3525adeaffdfcc2530f5efe4cdd7b2fa8dfd02",
+      "lfSha256": "16e9f8180bf62e8a924395680f106c2ed8a15cc520c0710884dc45897d307f83"
+    },
+    {
+      "path": "pkg/servers/artifacts/sharing_test.go",
+      "sha256": "697388fb6c31d695e1eaee9f89cc9f81e3bf41f31b046df4b96dc14cb1e8ec1d",
+      "lfSha256": "37def45094d72a988b5d81ff20f7826a0277feed764e8b8f57c6c543648cba46"
+    },
+    {
+      "path": "pkg/servers/artifacts/subjects.go",
+      "sha256": "9dc2ee76d8faa40ac1c51814b4b5ac5d4665271fd7ed90f950626585d421351e",
+      "lfSha256": "2d3ae7711286a9b7f204b975b00c130bb07568ed865c7bcc6d37d21d1cc1a7c1"
+    },
+    {
+      "path": "pkg/servers/artifacts/subjects_test.go",
+      "sha256": "56667edcd212ee2248bd53c16ebfd4f279d4317fdae8993e5083142422ef20cb",
+      "lfSha256": "bd3a42fe35a0d44183c4de43b17236e49be77a023cd7fe74ed397c28f9a6d42c"
+    },
+    {
+      "path": "pkg/servers/installzip/installzip.go",
+      "sha256": "d31ace3bab28972db30d348b3789af9c0a3676218e67e7b5e055c8896b09eecd",
+      "lfSha256": "2d01712e2f0e2b4a8108f7e974fcaf115c5a343e90a1d6e8942771b079d33ac3"
+    },
+    {
+      "path": "pkg/servers/installzip/installzip_test.go",
+      "sha256": "0759db6c42b7d167070bfe414f9d074bc3cfa1a0c0fb9987f6bc0a1664ca09ae",
+      "lfSha256": "02c7b4d3ceb04b340e659f106457502977951ad89afd27a9b45fadb4a25430af"
+    },
+    {
+      "path": "pkg/servers/meta/meta.go",
+      "sha256": "25faf53ce7adc58f7791e3e3705586ce50dfb12e8573e2c1abc23548dd3338f7",
+      "lfSha256": "28aefe139241089722494d805765e5b92301cb6574f5f84fddf608032bbef097"
+    },
+    {
+      "path": "pkg/servers/meta/resources.go",
+      "sha256": "71f1edc3c17d737d5083035006da500f3aefad8cea7aa34a7a6769b7f4c4cf7d",
+      "lfSha256": "678fc9722a75d359b990fec6d7aa7fa5218998a2ad9adbd7c4fc3e614dc5e9ac"
+    },
+    {
+      "path": "pkg/servers/meta/tools.go",
+      "sha256": "347e14724dff8beac8e125d396e29c0268b35fe1c798063a01aef67b5d52576f",
+      "lfSha256": "8b4de2a278d4006e415404fc19523fb1080596ce3097406797c185a624303954"
+    },
+    {
+      "path": "pkg/servers/obot/config.go",
+      "sha256": "f214d3f3dea1ee485ce7e7914eaff9047e2aefa48ed7e4302c093f973e09941c",
+      "lfSha256": "3614a5fe31c21db455f3fa6e541e24b7e029e590bc60f414699f4a1058a649ac"
+    },
+    {
+      "path": "pkg/servers/obotmcp/config.go",
+      "sha256": "42da5821952afd67039b407915afc663bc841eaa2e5f4202aa501d687f36c166",
+      "lfSha256": "c4c7c35335d42ee75e1ca85ef4ef4a15664b1179fa5e5cebdb1d11e0ba667327"
+    },
+    {
+      "path": "pkg/servers/obotmcp/dynamic.go",
+      "sha256": "221f37b0caa4755551814ee4eabca51527363aab498ece6f53aecb2d8ab63155",
+      "lfSha256": "811531110366df16d5d1c387ba87bc65fa2a6236f8cce7cee3f11b2171ce42d4"
+    },
+    {
+      "path": "pkg/servers/obotmcp/fetch.go",
+      "sha256": "e8853ad843ce215572b83b6f844243609ebf2b6a522c2452b4c8c4209afb22ab",
+      "lfSha256": "59dded742a71beead5b24427d67349425b48295d8326d4dbce1474f242bc611d"
+    },
+    {
+      "path": "pkg/servers/obotmcp/mcpcli_config.go",
+      "sha256": "125f7fc093877b68bff2aab9188023163dda4b56801d213d6fdbf0d2cf47bc4a",
+      "lfSha256": "a1b8d5478db4bb5d94f794dd2d6a0dd95580fca7e7c083709f30b00cffafa801"
+    },
+    {
+      "path": "pkg/servers/obotmcp/mcpcli_config_test.go",
+      "sha256": "b698175b12efb95ea175b415b8cabe3754aa8e956d9194f73d972cf09d869814",
+      "lfSha256": "2c03235de79b65f75d3e2593b9277ecb2df578930b1481519239fd2f0bfabea5"
+    },
+    {
+      "path": "pkg/servers/obotmcp/server.go",
+      "sha256": "ee8f7808bf87456b06bc5b58b63ff4abacce6fa862ec05041ca4e99cca2a3a8b",
+      "lfSha256": "1a60cbd7f231f3c0f467ddcd76fd62a3e7745aca9d94d85728cebbe4776d10c3"
+    },
+    {
+      "path": "pkg/servers/obotmcp/server_test.go",
+      "sha256": "88c5193cf15c20f59f0a3f24cbd8f71746dba1804a2584553c5494f2926a168a",
+      "lfSha256": "c2d1a26a6b426869913e69f43d5257c9636e3711a5fbe4b3b01b0d1e2a902317"
+    },
+    {
+      "path": "pkg/servers/skills/client.go",
+      "sha256": "ff5b67bd1a65ab78f56ce4a46ea28c8f9bd7b5dc9e9c1dcbe76beebf428cd6ee",
+      "lfSha256": "ddfd36fe115f11d50c181c530216b00f5e5fc2ab1cc8f38661ad5e882e130d16"
+    },
+    {
+      "path": "pkg/servers/skills/delete.go",
+      "sha256": "af0b3649e7d3b210d6cd44e1dcb4d6e0aa36a88a8a5da582caa23442ad86f8f3",
+      "lfSha256": "9dfd4abc84c31d5ea28a73fb55639172d8198ddc6329887c909d00634ec66295"
+    },
+    {
+      "path": "pkg/servers/skills/install.go",
+      "sha256": "538de5c7c2b347cdc196139df14cb22791d6d604f2de10964918bfb840e2dd7d",
+      "lfSha256": "03bacb7cbe08181d571582a317aa28e95e8488ce80cbc10b8a55780e47e91c87"
+    },
+    {
+      "path": "pkg/servers/skills/server.go",
+      "sha256": "2951ea37911185d9741fc8c7b43adcbab3a873ac08a7f6012542b98075237d5e",
+      "lfSha256": "11312534521ec755af53b787aa98a31615fa5e4aa5548d688482b136745704b6"
+    },
+    {
+      "path": "pkg/servers/skills/server_test.go",
+      "sha256": "8c4b113d8f1254f511bedb41add4ac9e05bc8887cc73bb02f30679bc46dae6a8",
+      "lfSha256": "925848dc918a19b632b8d102c0660a1eeda446268879c2c1e929697ef16d4d85"
+    },
+    {
+      "path": "pkg/servers/system/bash_env_test.go",
+      "sha256": "67d2a7d92c237b1f8691771ba86a1e8e25091791fc4c3d9f97c7f6753ebf1fe9",
+      "lfSha256": "3ecac70b930ca955d3ab790a9d8130fab5c16c291674761cb2e4373be971c73e"
+    },
+    {
+      "path": "pkg/servers/system/config.go",
+      "sha256": "f53d011d21d3cd86b1af25506b8f8118a29989d1bef7096a6b7e1ef5b6069bc5",
+      "lfSha256": "6fe939507f5c083e314d0b69abeb2f53926f79c3b4a45672c2b3892afcd9b60b"
+    },
+    {
+      "path": "pkg/servers/system/config_test.go",
+      "sha256": "f9fc003978d6e580e59b37cb68789e64f7005b64e8dbf2015731665965d4d267",
+      "lfSha256": "cc537e40945f49ea14cc30723e80f4353321339f27bf8e4ed862302061565748"
+    },
+    {
+      "path": "pkg/servers/system/files.go",
+      "sha256": "4d2481676ea62510d9c245ed60855cc852cf2ec432fb14e5f9aab0054bea7543",
+      "lfSha256": "04437cf957487f8e7c83d9361955fd5de055d862fe45f628900207888cb7e7e8"
+    },
+    {
+      "path": "pkg/servers/system/files_test.go",
+      "sha256": "94f340db1c4e2131958539f73ab51a715a0de889b885e39d748dc83cab1f55a6",
+      "lfSha256": "d312b6595118edd9ae4cf6a6cf30fcb988525470c12d87d0988781e93b061cac"
+    },
+    {
+      "path": "pkg/servers/system/obot_mcp_bash_env.go",
+      "sha256": "08f1b0445aabdb52bb30c907b4a020d9724a494d63f419f8caef4aa264595f8f",
+      "lfSha256": "f002e0f3efb73dd98da9dd757d575c3eb585646155a8d2fe22cf94d51d16ee33"
+    },
+    {
+      "path": "pkg/servers/system/question.go",
+      "sha256": "d1300efafc5460ba0786db4b70517aff664e5e0ab2f225d48d8b283e258c7c6d",
+      "lfSha256": "158fc9a6d733412ccaaafe6a550dca850cec240262196137b1bf552fe9210db6"
+    },
+    {
+      "path": "pkg/servers/system/question_test.go",
+      "sha256": "14d7dced14cd89eadab0ea2481d7acd79e309b2edcdd9cd74773edb4c2361878",
+      "lfSha256": "adcc9be6b5ff607d065a61b656fad54ad78cd58a33d4c47c4f96fd0be9c576ce"
+    },
+    {
+      "path": "pkg/servers/system/read.go",
+      "sha256": "edc47a6c08487befe5e7675bfd6c15fe12b4a2dc25e40dc9e8176da162d70e1e",
+      "lfSha256": "40b28e107660e9cd4bced7446b7bfd8d92784248f68c26ff2233c89543b026d0"
+    },
+    {
+      "path": "pkg/servers/system/read_test.go",
+      "sha256": "48c89c8d80bfab505b229abadc9b4130ac29ba3bba2b9c388007269dcde0e27f",
+      "lfSha256": "65b0f5545512a597c3b0872dbb350307fa0b4d477190186f105d0165cd90b515"
+    },
+    {
+      "path": "pkg/servers/system/server.go",
+      "sha256": "1cbc0bb267553d393c0d2774e8a1f59a215e520954b3df177be1322c286d06fc",
+      "lfSha256": "713ef16e7e0dd2742edc46be047d9c0ed84ba0ff2732179889bf76597fd8334a"
+    },
+    {
+      "path": "pkg/servers/system/skills/browser-use.md",
+      "sha256": "73a29e6c4a28408aa716f9162a9679d8b89b85faad3634a61990da8fed480cbc",
+      "lfSha256": "a588428e8b770b7d3061c207d4c818e90958e8a051e520c857f3f84da7626455"
+    },
+    {
+      "path": "pkg/servers/system/skills/python-scripts.md",
+      "sha256": "3409d3eecbce64eb662476586419b7aa58a918c71a6247634a8220852943a6ee",
+      "lfSha256": "20218f178cdf0853227a7e434f32e419c1444d9d3d9dc7c7535dade47f6a02b5"
+    },
+    {
+      "path": "pkg/servers/system/skills/scheduled-tasks.md",
+      "sha256": "14356117d12556be25b46cd63c5a731635549c6f975a57e6a6d22b3e4ced2c79",
+      "lfSha256": "ebe86007ed1d32e0c7da0f0c6aee357d1fbbb04d74a0e3b631a0f75f34a471b5"
+    },
+    {
+      "path": "pkg/servers/system/skills/skills.go",
+      "sha256": "a64aa213ae8abf496640e5fadd429b24aafb9f2db1a7a22a7e22e1907b5d9c6c",
+      "lfSha256": "343ef2998b12a8db0e9852ca45e0238e5374e21a5c87e489bf3d50aebdd63da1"
+    },
+    {
+      "path": "pkg/servers/system/skills/workflows.md",
+      "sha256": "83895132fa42b8d7e5bc232f0923b62d4a0c6d41110913cecc2403a1694f2f44",
+      "lfSha256": "9fadc8af520725fb8b203e0e386f77b32edd4c27ca7038e4749ad179e34685ff"
+    },
+    {
+      "path": "pkg/servers/system/skills.go",
+      "sha256": "359bb14ddbecd25d220c3dc430756c2038eecdd324c0349a01194e9a8b2388df",
+      "lfSha256": "1c1601e439b52fee4e568fdf0dd2a31f34343c3375430a8488894b44d12186d2"
+    },
+    {
+      "path": "pkg/servers/system/skills_test.go",
+      "sha256": "e792fb429139cac47ae0453094063ddbc685de7e356d7e020d02713596bed8cf",
+      "lfSha256": "263a97f5234317de746eef9cc021d6e17879191ea29abc8038ff54861cf7a0b9"
+    },
+    {
+      "path": "pkg/servers/system/testdata/with-override/skills/workflows.md",
+      "sha256": "6ef16942c59eece9a236e8b9cbf326db91e4a5d7f69ba066ca8676da213a19bd",
+      "lfSha256": "cb29162c23417a4a468c21ac6f202240447ac3f1ae09aaaa9b5e011e5c1b6789"
+    },
+    {
+      "path": "pkg/servers/system/testdata/with-user-skills/skills/my-custom-skill.md",
+      "sha256": "06c80531d39c6c63bee3a918f370475c450301c85f5d8023f20ea33aeddc3156",
+      "lfSha256": "9fa4b0ef21384574e1ebf28e00d0b3a176879885c98dbc355dbc0bf0921cb176"
+    },
+    {
+      "path": "pkg/servers/system/testdata/with-user-skills/skills/user-skill.md",
+      "sha256": "9c83cfcada280b4ddfe2bd385b1122a339981e0e4732aa962997655964cd059d",
+      "lfSha256": "2dd5f1f3ca56ba2affac992f886982387ab88605a029ea577d620ed51a5d8b92"
+    },
+    {
+      "path": "pkg/servers/system/todo.go",
+      "sha256": "dc447c9e6dc370fd49b8a9f64961631033e890556fa1e916a7644ffb514b6474",
+      "lfSha256": "03684fa500a70e0cc64f26662fc60e131f6f70770eb1bb5143eab384de3e6612"
+    },
+    {
+      "path": "pkg/servers/tasks/schedule.go",
+      "sha256": "9582ebea74bf67edb93ddf0229d4a8225d7792b228a17aad2ac86e7d2db1d8f3",
+      "lfSha256": "fbb76adc2b4aa19dcbd97e53f169aa34e522ae67fec2ad386ea9a8bdd5ae1de6"
+    },
+    {
+      "path": "pkg/servers/tasks/schedule_test.go",
+      "sha256": "999d53fab29bedf95c708d48ac71f50ac31c4f343b7a57d418ca7d94fb5d4407",
+      "lfSha256": "ae626eaaa4441bdbf24223d576f42e90b0b1c15f3517d727760d7ef9a308a5f7"
+    },
+    {
+      "path": "pkg/servers/tasks/server.go",
+      "sha256": "40e283d66fe8ee1f258b5ce128ab82309e3cdc229b1ba232d9361de72807e31b",
+      "lfSha256": "7ae0fc3e46f52964c909088e12b05a30f80604da1cd4471a1d20ad3d293a0ec5"
+    },
+    {
+      "path": "pkg/servers/tasks/server_test.go",
+      "sha256": "2d87497d34ec36170aa1bb47111d72f83e0ef9f713e7a0297ff7fec0cf5ddeb8",
+      "lfSha256": "1e27c287256fe8be436a246f7c9934d965e8c8bcf900d8c7352ce85856d4eb6a"
+    },
+    {
+      "path": "pkg/servers/workflows/server.go",
+      "sha256": "7bcd51bf2a10281f69a6b3dea282bd8fbcd57bbfea059a9359113a78acb7e844",
+      "lfSha256": "3d0406785c0e618f7aff415d7136406d556db9aa08cb42154a9c8ca252722b57"
+    },
+    {
+      "path": "pkg/servers/workflows/server_test.go",
+      "sha256": "68955b7c58e0011594c56920dcfcd41775b9f4f4835cce895abb0343ac47a53a",
+      "lfSha256": "19b24838d5451858a5f0ba2455fc2d0051b37a6978b898e725692acf816a16c0"
+    },
+    {
+      "path": "pkg/servers/workflows/testdata/empty/workflows/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lfSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "pkg/servers/workflows/testdata/with-workflows/workflows/another/SKILL.md",
+      "sha256": "3ed26898e8423a554f2f1ed4968d95899a7547964ce21c2a8ee7ce64da1fbf99",
+      "lfSha256": "e1ee609b05724aa392436775b8231407d5ad628170e1f91d5f42b7509a3de65c"
+    },
+    {
+      "path": "pkg/servers/workflows/testdata/with-workflows/workflows/in-progress/script.py",
+      "sha256": "c484eb961c5606012766f10759578d8fb5da40dcbe5fb37982b3eb5fa2d24868",
+      "lfSha256": "24131ca89ac7a176f99d5bfef6fad981e8d5c3b866abf68fe4007b8198e2b1c1"
+    },
+    {
+      "path": "pkg/servers/workflows/testdata/with-workflows/workflows/no-description/SKILL.md",
+      "sha256": "6a792d9f16139e08cf8123e9995b8c68b223f95cd952a179b368904492ca3580",
+      "lfSha256": "f46baceeb22a296b8b180030cedec0c41bdf9d8ad0cf9c064d3af3d365469d19"
+    },
+    {
+      "path": "pkg/servers/workflows/testdata/with-workflows/workflows/test-workflow/SKILL.md",
+      "sha256": "397724aae87a814d4d0968ca8f16667cf24a970871a29dd39718a01f041c4a84",
+      "lfSha256": "325990a0cdf99f352c0af91254201634038d75cd643aade70e2f6d51b2537386"
+    },
+    {
+      "path": "pkg/servers/workflows/tools_server.go",
+      "sha256": "36bceb9cea063de1f1ffb297e9954ef97532ab343b595c28f923d84f70ee783d",
+      "lfSha256": "359ee64e5e7ebbdd2486b206cfc459e7271a3875396db9bc872ac9e6a0dd592c"
+    },
+    {
+      "path": "pkg/servers/workflows/tools_server_test.go",
+      "sha256": "44baf55c1458b17cc89f20ca0db139e783cb57922d4cd2cd94499fdc065f3f2a",
+      "lfSha256": "30467533169b9272217d15d67e2eb4ba4d7fcfe3b2d86cd762cb4462950b61fc"
+    },
+    {
+      "path": "pkg/session/browser.go",
+      "sha256": "94daee0018321a38379bb39e2f2028954358298bd3afaeef84e57bbbfca7fc05",
+      "lfSha256": "d6b5e6c82f3aa7afa4352f7a3563d5dddf98c301a33d75d33cfeb0275816c84e"
+    },
+    {
+      "path": "pkg/session/browser_test.go",
+      "sha256": "3cd7b3d1bd04e4e1baf5f07eacf7eed6fea55f226adfdc616e97819536aa9604",
+      "lfSha256": "ccfbc480627e47be834d39251eee27b56871194c930bc88af09d17c5f8f7b9f7"
+    },
+    {
+      "path": "pkg/session/manager.go",
+      "sha256": "05168698c2ff2ad2ccb03c9922a34e756958fd02a8c59dccd841ed6e46007a24",
+      "lfSha256": "8ca908fb302a806e15cf304374b0b24503dfaae576f984a7613af95e8dd5b9f4"
+    },
+    {
+      "path": "pkg/session/migrations.go",
+      "sha256": "601a66381937228baf5fd2005d3688394315b07bfb4bb5b9fef4ccefd3d02242",
+      "lfSha256": "7781e18bfc97c94bfed27d78acb35f7b91b5b3499ff0921365d2b6c77d21054c"
+    },
+    {
+      "path": "pkg/session/store.go",
+      "sha256": "aab1dd271ceab101700ddc5ab76f47246775fbb924683e9c419a67b85f2a352e",
+      "lfSha256": "70a4aa1b8fc62464f670d8cb517e3daa54f944599214efcb377877db7d769e3c"
+    },
+    {
+      "path": "pkg/session/store_test.go",
+      "sha256": "79a8fd62f6b6494565a0572efc274abc64d8d66af7d0591a2eef0f7f7785abc3",
+      "lfSha256": "3efaf4d6dc59e3a3d8d68cc56f952d0026ee1b4223bf83eecd19c8c606729039"
+    },
+    {
+      "path": "pkg/session/types.go",
+      "sha256": "5e4bb58510694bd8f4b04567ad296a4769c5e0e8d16afc086084e317a997e140",
+      "lfSha256": "1ab5a5d99b4c2547e12b8f056979aed91e8d3cae7e6501d9022a4b5ad701275e"
+    },
+    {
+      "path": "pkg/sessiondata/sessiondata.go",
+      "sha256": "037ce45af4143d134ff04f77d35bd36f56f9d9ec55e42a3854f479bd81cd9433",
+      "lfSha256": "9868284246982e574bab72d556ae22d9b579d81c1c09b7c623c56b029d1c7961"
+    },
+    {
+      "path": "pkg/sessiondata/uritemplate.go",
+      "sha256": "55ff95d944c5458092f8d03b2db84c97f248178d47bd32274e80afad37c9e47f",
+      "lfSha256": "a7c7e1c8b5eb45c9016656d072accc60fd52e7956b9240e59a219905690c9172"
+    },
+    {
+      "path": "pkg/skillformat/validate.go",
+      "sha256": "3a34b302ffe791baaf3b743b0a7b4f5f3a7c4818656b1efa69e61d591677723a",
+      "lfSha256": "000d50eaebe68fc9d5ef45bbfa91ea5313763af52bd97b95aac394082c54421a"
+    },
+    {
+      "path": "pkg/skillformat/validate_test.go",
+      "sha256": "a2db6e51623cd489ef4ac9917e1f469155835898efbea699ad8ca4d886b3ee62",
+      "lfSha256": "9cd66e9fd9997c9d882c1ceed95f4af2285808cc23cb9f93f7a2f0a5413c70a5"
+    },
+    {
+      "path": "pkg/supervise/daemon.go",
+      "sha256": "4b4fa4ea56d34f259b6a3506c924bd11f3a6cd9228dbe36b6246908edd5cf883",
+      "lfSha256": "e4d2c550f7764c650c8d6fe03a285730369cf4a65e03f41320b2313d4d0274cf"
+    },
+    {
+      "path": "pkg/supervise/daemon_linux.go",
+      "sha256": "d1906fd76f0007492821a57d4df9e5a90fa635761c076b3fd35b7dee53867f75",
+      "lfSha256": "bc3d17c66b18546132b596211ac2ed8aa898b8103567fc7b852e107fe93126ab"
+    },
+    {
+      "path": "pkg/supervise/daemon_unix.go",
+      "sha256": "79224dd1573f51ab15821891bdecc304c584e37b7f2f4a34625cbf2ab6b8014b",
+      "lfSha256": "f6ed5896f9e09f329e35f54f21033a1972b9bfbc2d9490c51bd5e0dca10c59a8"
+    },
+    {
+      "path": "pkg/supervise/daemon_windows.go",
+      "sha256": "3d234353f3650d7beef00b3082024f5432317d18e51c288f2625433dba2b527d",
+      "lfSha256": "6c45064d2bc9c06fdb09a785faf7d347465f665509de77da6e57e6c7a8229798"
+    },
+    {
+      "path": "pkg/supervise/supervise.go",
+      "sha256": "d219e9e637eab117c0405230765e0f6d4b5daf461bbd211bd7a1c10f84946e44",
+      "lfSha256": "f8d1287223a99b44c086f7b590c83a95a800bae381efb61a961e404425654e80"
+    },
+    {
+      "path": "pkg/supervise/supervise_integration_test.go",
+      "sha256": "ba333e1b18404a096798c3f2502c110b53227d3f27f3acea085d0786037d4c6a",
+      "lfSha256": "5245b11d6622430da44db91272cbf5ee1f3e36f2884bf7f9fe3d916298febcd5"
+    },
+    {
+      "path": "pkg/supervise/supervise_windows.go",
+      "sha256": "b78a1ce39504239c72643816fd1f0a27b9a9f1a576fec24aa500adb912d667a7",
+      "lfSha256": "749777d2159e8ed3d379266364f2a95ae9cc2b9a52761d10d3d64acbddf5fa4e"
+    },
+    {
+      "path": "pkg/system/currentbin.go",
+      "sha256": "833eef458490013f39031bb2aebd355a2c8d5cf5daded9e2b568d5da1059a877",
+      "lfSha256": "da09ed8f5eb9f7313adca0290511cbf2cac06d8e70c72491ec1b8a1cd2ab49b5"
+    },
+    {
+      "path": "pkg/telemetry/otel.go",
+      "sha256": "877d992412c6cdee9055dfd3686c3f1af705d0702ac3b81331d1050ae3c1e3e6",
+      "lfSha256": "795a6c8762bc3b52c4a311fb0ca45d65c029473f0bba386be992b5b68160227b"
+    },
+    {
+      "path": "pkg/telemetry/otel_test.go",
+      "sha256": "ed21e9b9ac8567a2548d73700415c9bb932a23c7f11fec7bcd8aa188d99218b5",
+      "lfSha256": "256189aa4665cd15a7afaeb98001b54de16b309d00665a9574784ab28c426954"
+    },
+    {
+      "path": "pkg/tools/flows.go",
+      "sha256": "e667de109dd44ffc3fb3c7ec1fd9033f3546d0a08966b6eb0ad5ac3aa5de3409",
+      "lfSha256": "e5f4b07b633b3fe14c3470fd60339d42d9b2580c3c39398b758dd675c7c7dbb7"
+    },
+    {
+      "path": "pkg/tools/service.go",
+      "sha256": "004530cf8be63537bd9bad5a142ed202e9df8b410d5117b17d080a923a4ea9f6",
+      "lfSha256": "399ed0af691187fd1abe21ddec66337ebbb72fdd5707594304718d20a8740fe1"
+    },
+    {
+      "path": "pkg/tools/service_test.go",
+      "sha256": "66857b056e4c0c60342409ea1c120d5e75817b1cc8021f59acbb83d604cdfdde",
+      "lfSha256": "36f89d77c6f99b301e75cb18afc5d28e897ece563d5e5d5ec4e6db052c4dfe53"
+    },
+    {
+      "path": "pkg/types/agentaction.go",
+      "sha256": "3a9e2cd83e29e108566b065dc3017e450b3486513ce16cc2af555e29c2870339",
+      "lfSha256": "fa2bbcfbbbfa72e74b73208e546a51192be0cc10dbf76ef2c6aa9e3f7b9f00b8"
+    },
+    {
+      "path": "pkg/types/agentaction_test.go",
+      "sha256": "290593cfe264627a8ee73ed5aa4d33628b2200776473a4596c979ece9532b01b",
+      "lfSha256": "aa6a9bcf1ee1dd77c445e9f195133b307e31ef2e5fa17ced4f2f09dd383c807a"
+    },
+    {
+      "path": "pkg/types/chat.go",
+      "sha256": "e49ed6ad002f5bc954acabcea67f62f12eef7787cb232c31b852165c21a0fa08",
+      "lfSha256": "1ef4021a58a33a260f25252931d6fe42f2b3a945e7b78a1ebcbd7b753a95f0af"
+    },
+    {
+      "path": "pkg/types/completer.go",
+      "sha256": "25faecc04eaaeb88b6e26a39e0b252c1bee5e417bd9bb60c320b234041a1dac0",
+      "lfSha256": "609c2b0e7cc14a6c21fe15c9ac460b22da97f8a1c6dd1ad2c43b5e887c720219"
+    },
+    {
+      "path": "pkg/types/completer_test.go",
+      "sha256": "e9659b5e64ba69bae4698f9a93781b5799a813bb1ee7db6396bf128935f09462",
+      "lfSha256": "66cdc4ae7eb58276ff0807788f6951a4f2d3bbbcec3f12b5588ff744033e591a"
+    },
+    {
+      "path": "pkg/types/config.go",
+      "sha256": "37318efa27a8f53723444938f72298c0ab60c58c9d5ec87b5e99c28f753bc3b8",
+      "lfSha256": "046823a6316638f65e42eb3849dd103edc6c40612f54786f79748cb4c8310360"
+    },
+    {
+      "path": "pkg/types/config_test.go",
+      "sha256": "67375a981f4308c65d3078471724cccae7a86ed0f695adda5b7afc64abfca871",
+      "lfSha256": "abf9f98e0376f2cfc7db186e79ff1ab8dbde4544895b74cc2bd39a2a30673347"
+    },
+    {
+      "path": "pkg/types/context.go",
+      "sha256": "a73b0f71fb885edcbbcb1f7cd11d42c2d1235ccb0feaae1af82d778df247c938",
+      "lfSha256": "7ea90bdaac0ce2ede6e2e7fbb1a0a1f7636a8ed85ff228115d769171e9c5355f"
+    },
+    {
+      "path": "pkg/types/dialect.go",
+      "sha256": "ff6162250105e6877aede0034fd84b89e5d37d30c60d143c84443fc9c4c038ed",
+      "lfSha256": "1753609f6e055e3938ed76d97d45e4e67f42aabb16df637282e5bb7700281946"
+    },
+    {
+      "path": "pkg/types/execution.go",
+      "sha256": "028446bebb25a99ed8cd8c9df9e44598c2216f0e36bd39e978efcb6715295266",
+      "lfSha256": "dcd372c229fbee69e7996943d323cd1fd0e0c9eb0a40c2fad52b409bd582e3f6"
+    },
+    {
+      "path": "pkg/types/hooks.go",
+      "sha256": "eddc866fbace6560fbd68838c19a52cc2c11e9127df00258c7f125fa4c9dbfea",
+      "lfSha256": "33b56e60d1cebb1a69e7775e5be2da929391df837b2b6c448dd2aff663a7f251"
+    },
+    {
+      "path": "pkg/types/messages.go",
+      "sha256": "9b0a2481d723ddc6aaebabdf011529e052e5c589d3b5729bb62c6dc86a2157a3",
+      "lfSha256": "9b88d15bc700a42b5a85f3383c3a56bdf6782840a8884c36248bb14ca8d71326"
+    },
+    {
+      "path": "pkg/types/meta.go",
+      "sha256": "8a6e45d92f30558221ed39398d3c6e07338fb6afc97ef76d22118e0e55b05128",
+      "lfSha256": "1d0644dc115a01c741208cad0c9cbecfea73cdef1934171173c2bb04afbb5b73"
+    },
+    {
+      "path": "pkg/types/mimetypes.go",
+      "sha256": "fe65b09de9ba6aee2973f573a504f1c808b845d03528aeb57240441e77514582",
+      "lfSha256": "bb03ee02cedc76d7c443fb86bd2ffbe6452367dec73ad1c9bf3dee541aa5e055"
+    },
+    {
+      "path": "pkg/types/mimetypes_test.go",
+      "sha256": "4c584173104a23973cd61a90e0232b72e99baac2231380da1b7accbf670a2c69",
+      "lfSha256": "3d07de07142c552d97d3fad4714cd4a5380bb346cb998d56f86d4a162e97fbd4"
+    },
+    {
+      "path": "pkg/types/validate.go",
+      "sha256": "f6983f8f516ea069e0f1bb12db24ec120c9d0838bb3556091f1b69f1622b775f",
+      "lfSha256": "2a95e31f4a3fc39bea201f071569e70e641e170612908a0c80543e20a2c97de4"
+    },
+    {
+      "path": "pkg/uuid/uuid.go",
+      "sha256": "672ada5620186aff4acfc048260e823e9c4787b6da549a040006aff033bc0920",
+      "lfSha256": "ab40476895af019bc1058ab7ddbe0346a9494c73fd86158122bf1ea81bb59599"
+    },
+    {
+      "path": "pkg/version/version.go",
+      "sha256": "5d22bd546663b969b09280d0f1bd1cf6379d91e70002e9db034ee9ac7bf72c57",
+      "lfSha256": "dc1795012552d1feb028bbef733c56ed0d2a68f3e773fc3a7547b07dde27ba44"
+    },
+    {
+      "path": "README.md",
+      "sha256": "2de1dba96bd88e28d38c1aa2126147af77275d02d565f13f8d525bddc87dac67",
+      "lfSha256": "608e7bbe9c7b45e1116f34830a559ab93c7deddb6633580dc73f4a4cd208c87f"
+    },
+    {
+      "path": "scripts/agent-entrypoint.sh",
+      "sha256": "023d24261c00c58a83b87560b8fd5025458aac4083b9d0b428533faf38286d3a",
+      "lfSha256": "dfa1de6abb4545be57cc94bc00c211459416537f52f09cfc67ba72c2e47a2ff9"
+    },
+    {
+      "path": "scripts/install.sh",
+      "sha256": "291cc133289370e1aca122e46b518602af1b9a0cf37ad1fdb7bf97ef9768626d",
+      "lfSha256": "71ba765b3622922eaccb181cea176df8e82da6052d584c9b02764c4c501edbf2"
+    },
+    {
+      "path": "scripts/prefetch-tiktoken-encodings.sh",
+      "sha256": "7f58f528f659b31540774241b86e5feec98bf51a8bf82e9abca417ea211f706d",
+      "lfSha256": "4c36c494ca6d477ead916ccf8c4fc15535c5f2b31f2fe46d2286e9b186a21838"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "765e44422177ffbb4f81c4f00a26b6240b635e3b182f59f111db48b7dbb0e466",
+      "lfSha256": "9cde0383e7cf9837f6ef894fe1f04230f6c922ecc91a07e5ee8d1f93aac4ea13"
+    }
+  ],
+  "originalFiles": {
+    "go.mod": "third_party/upstream-packaging/nanobot/go.mod",
+    "go.sum": "third_party/upstream-packaging/nanobot/go.sum",
+    ".github/CODEOWNERS": "third_party/upstream-automation/nanobot/CODEOWNERS",
+    ".gitignore": "third_party/upstream-packaging/nanobot/.gitignore"
+  }
+}

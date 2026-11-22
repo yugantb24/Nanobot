@@ -1,0 +1,163 @@
+name: FragAI Nanobot agent
+
+on:
+  push:
+    branches: [main, 'fragai/**']
+    tags: ['fragai-agent-v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fragai-agent-${{ github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
+
+jobs:
+  compatibility:
+    name: agent-compatibility (${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 90
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-24.04
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24.15.0'
+      - name: Verify owned source and input locks
+        shell: bash
+        run: |
+          set -euo pipefail
+          node fragai/verify-sources.mjs --require-tracked
+          version=$(node -p 'JSON.parse(require("fs").readFileSync("fragai/build-inputs.lock.json")).version')
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            test "$GITHUB_REF_NAME" = "fragai-agent-$version"
+          fi
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+      - name: Build complete agent and run source tests
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: .
+          target: agent
+          platforms: linux/${{ matrix.arch }}
+          load: true
+          push: false
+          tags: fragai-nanobot-agent:review
+          build-args: |
+            VERSION=${{ env.VERSION }}
+            SOURCE_REVISION=${{ github.sha }}
+          cache-from: type=gha,scope=nanobot-${{ matrix.arch }}
+          cache-to: type=gha,scope=nanobot-${{ matrix.arch }},mode=max
+      - name: Pull the immutable original for comparison only
+        run: docker pull --platform linux/${{ matrix.arch }} ghcr.io/obot-platform/nanobot-agent@sha256:6c612bfcd18183c6ea22077ea8c0e690245a483d3accd392621c45e1fcab6ea0
+      - name: Compare the actual runtime inventories
+        run: node fragai/check-inventory.mjs fragai-nanobot-agent:review
+      - name: Verify linked Go modules against the original binary
+        run: node fragai/verify-linked-modules.mjs fragai-nanobot-agent:review
+      - name: Exercise agent, tools, browser, documents and state through rollback
+        env:
+          FRAGAI_REPORT_PATH: bin/agent-compatibility-${{ matrix.arch }}.json
+        run: node fragai/check-runtime.mjs fragai-nanobot-agent:review
+      - name: Build owned CLI sandbox image
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: .
+          target: cli
+          platforms: linux/${{ matrix.arch }}
+          load: true
+          push: false
+          tags: fragai-nanobot:review
+          build-args: |
+            VERSION=${{ env.VERSION }}
+            SOURCE_REVISION=${{ github.sha }}
+          cache-from: type=gha,scope=nanobot-${{ matrix.arch }}
+      - name: Verify CLI and the linked owned sandbox image
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker pull --platform linux/${{ matrix.arch }} ghcr.io/obot-platform/nanobot@sha256:7727ed9c1d931a7419afc89a615f368ab7265d25ad1fc8dc9a910ccf21e5005b
+          node fragai/check-cli.mjs fragai-nanobot:review
+          docker run --rm --network none fragai-nanobot:review --version
+          docker run --rm --network none fragai-nanobot:review run --help
+      - name: Build owned browser and office runtime
+        if: startsWith(github.ref, 'refs/tags/fragai-agent-v')
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: .
+          target: agent-runtime
+          platforms: linux/${{ matrix.arch }}
+          load: true
+          push: false
+          tags: fragai-nanobot-agent-runtime:review
+          build-args: |
+            VERSION=${{ env.VERSION }}
+            SOURCE_REVISION=${{ github.sha }}
+          cache-from: type=gha,scope=nanobot-${{ matrix.arch }}
+      - name: Log in for the authorized release tag
+        if: startsWith(github.ref, 'refs/tags/fragai-agent-v')
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish only the images tested in this job
+        if: startsWith(github.ref, 'refs/tags/fragai-agent-v')
+        shell: bash
+        env:
+          ARCH: ${{ matrix.arch }}
+        run: |
+          set -euo pipefail
+          for name in fragai-nanobot-agent fragai-nanobot fragai-nanobot-agent-runtime; do
+            image="ghcr.io/yugantb24/$name:$VERSION-$ARCH"
+            docker tag "$name:review" "$image"
+            docker push "$image"
+          done
+      - name: Keep JSON evidence and readable result in job logs
+        if: always()
+        shell: bash
+        run: |
+          if test -f "bin/agent-compatibility-${{ matrix.arch }}.json"; then
+            cat "bin/agent-compatibility-${{ matrix.arch }}.json"
+            node -e 'const fs=require("fs");const r=JSON.parse(fs.readFileSync(process.argv[1]));fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,"### FragAI agent compatibility\n\nResult: "+r.passed+"\n\n"+r.stages.map(s=>"- "+s.stage+": "+s.passed+" ("+s.checks.length+" checks)").join("\n")+"\n");' "bin/agent-compatibility-${{ matrix.arch }}.json"
+          fi
+
+  publish:
+    name: publish-verified-agent-images
+    if: startsWith(github.ref, 'refs/tags/fragai-agent-v')
+    needs: compatibility
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+      - uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Assemble both tested architectures without changing latest
+        shell: bash
+        run: |
+          set -euo pipefail
+          version=$(node -p 'JSON.parse(require("fs").readFileSync("fragai/build-inputs.lock.json")).version')
+          for name in fragai-nanobot-agent fragai-nanobot fragai-nanobot-agent-runtime; do
+            image="ghcr.io/yugantb24/$name:$version"
+            docker buildx imagetools create --tag "$image" "$image-amd64" "$image-arm64"
+            docker buildx imagetools inspect "$image" | tee -a "$GITHUB_STEP_SUMMARY"
+          done
