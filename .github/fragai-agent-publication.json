@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "version": "v0.0.92-fragai.4.4-rc.1",
+  "sourceRevision": "12243dd81463d53e641b00df6d54015b3e9e0a26",
+  "release": "https://github.com/yugantb24/Nanobot/releases/tag/fragai-agent-v0.0.92-fragai.4.4-rc.1",
+  "compatibilityRun": 45030208883,
+  "images": [
+    {
+      "name": "fragai-nanobot-agent",
+      "reference": "ghcr.io/yugantb24/fragai-nanobot-agent@sha256:fdd16cdd91dcdafc8473eb95ba2ea6d91dfed42569aa7be406ea15f704729102",
+      "platforms": {
+        "linux/amd64": {
+          "manifest": "sha256:6cf072ecebd78e711b5bf09183bd6638ff431235698986de15681cf50db15337",
+          "config": "sha256:b115dc1afd5cd4ec4fff8c6913d1b298a3d80a64fa032c274ff32d06bec747dd"
+        },
+        "linux/arm64": {
+          "manifest": "sha256:af3e4f9718c8c856ba087a774e2b1e7cb2f7f545456fcf3bff5d19f3e0feed3b",
+          "config": "sha256:92bccaab9cf3a27d520ff1464de6102dc9f6a87e5f868f3ddc7537a79e33ab9e"
+        }
+      }
+    },
+    {
+      "name": "fragai-nanobot-agent-runtime",
+      "reference": "ghcr.io/yugantb24/fragai-nanobot-agent-runtime@sha256:113bb1f92100a6590fb2f56b0ea91836f7459999192e078abad9bf280c696949",
+      "platforms": {
+        "linux/amd64": {
+          "manifest": "sha256:2bdeaf1130b2bcf3c27eebd2fd09c02bc30c398cda84d344f85c7b4cfe6e18af",
+          "config": "sha256:b6d826aaa5a28051aef983eadceb5b90d3110b59fa94ad5b49deb0357d10b2b9"
+        },
+        "linux/arm64": {
+          "manifest": "sha256:2506eb5bcbc7749420c06231daa369ad1a83ff703058c819c27798ac8ca85021",
+          "config": "sha256:9077f1d4a20edf4fbe85bfdcc8b482e7db459c13b0759828d7975de8b27f5afe"
+        }
+      }
+    },
+    {
+      "name": "fragai-nanobot",
+      "reference": "ghcr.io/yugantb24/fragai-nanobot@sha256:5d7c070e45e5495024662fd3b3e65a91be7568f0d58fdef2bf675993711e5566",
+      "platforms": {
+        "linux/amd64": {
+          "manifest": "sha256:b5815695231dd607e8a84b804bbf21019c1ce432b7a5584159a34d8da598332a",
+          "config": "sha256:b5a2b39ab47b69afc6069db267d8d22458dd415bfc2c0f1681582d6059c5c2f5"
+        },
+        "linux/arm64": {
+          "manifest": "sha256:e89e9c5255752c08ed876f681ca2df1185cf9b88624b6b2c877b60ffd7054719",
+          "config": "sha256:f6649521b7e5fe9729c30994ea5e1f450252b34c76247262a529e649f269505d"
+        }
+      }
+    }
+  ]
+}
