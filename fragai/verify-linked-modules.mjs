@@ -34,5 +34,9 @@ for (const [name, expected] of baseline) {
   } else assert.deepEqual(selected, expected, `Linked dependency drift: ${name}`);
 }
 const inputs = JSON.parse(fs.readFileSync(path.join(root, 'fragai/build-inputs.lock.json')));
-assert.ok(actualText.includes(`github.com/obot-platform/nanobot/pkg/version.BaseImage=${inputs.cliImage}:${inputs.version}`));
+// Go's trimmed build metadata omits linker flags. Inspect the packaged ELF,
+// where the linker-injected runtime reference must actually be present.
+const binary = execFileSync('docker', ['run', '--rm', '--network', 'none', '--entrypoint', 'cat', image, '/usr/local/libexec/nanobot'], { maxBuffer: 128 * 1024 * 1024 });
+assert.equal(binary.subarray(0, 4).toString('hex'), '7f454c46');
+assert.ok(binary.includes(Buffer.from(`${inputs.cliImage}:${inputs.version}`)), 'The packaged executable must contain the owned sandbox image reference.');
 console.log(`Verified all ${baseline.size} linked Go dependency identities against the actual original binary; only the checksum-proven local OAuth replacement changes resolution.`);

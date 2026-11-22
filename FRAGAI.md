@@ -30,6 +30,7 @@ module metadata and CODEOWNERS are archived, with owned metadata tracked too.
 node fragai/verify-sources.mjs
 docker build --target agent -t fragai-nanobot-agent:review .
 node fragai/check-inventory.mjs fragai-nanobot-agent:review
+node fragai/verify-linked-modules.mjs fragai-nanobot-agent:review
 node fragai/check-runtime.mjs fragai-nanobot-agent:review
 ```
 

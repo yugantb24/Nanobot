@@ -37,6 +37,9 @@ RUN bun install --frozen-lockfile && \
 
 FROM ${UV_IMAGE} AS uv
 
+FROM scratch AS binary
+COPY --from=go-build /out/ /
+
 FROM ${DEBIAN_IMAGE} AS tools
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get full-upgrade -y && \
@@ -48,6 +51,8 @@ COPY --from=uv /uv /uvx /usr/local/bin/
 COPY --from=mcp-cli-build /out/mcp-cli /usr/bin/mcp-cli
 COPY --from=mcp-cli-build /out/licenses/ /licenses/
 COPY LICENSE /licenses/nanobot-APACHE-2.0.txt
+COPY third_party/mcp-oauth-proxy/LICENSE /licenses/mcp-oauth-proxy-APACHE-2.0.txt
+COPY third_party/licenses/ /licenses/runtime/
 COPY FRAGAI_NOTICES.md /licenses/FRAGAI_NOTICES.md
 COPY scripts/prefetch-tiktoken-encodings.sh /tmp/prefetch-tiktoken-encodings.sh
 COPY fragai/tokenizer-cache.lock.json fragai/verify-token-cache.py /tmp/
@@ -71,6 +76,8 @@ COPY --from=uv /uv /uvx /usr/bin/
 COPY --from=mcp-cli-build /out/mcp-cli /usr/bin/mcp-cli
 COPY --from=mcp-cli-build /out/licenses/ /licenses/
 COPY LICENSE /licenses/nanobot-APACHE-2.0.txt
+COPY third_party/mcp-oauth-proxy/LICENSE /licenses/mcp-oauth-proxy-APACHE-2.0.txt
+COPY third_party/licenses/ /licenses/runtime/
 COPY FRAGAI_NOTICES.md /licenses/FRAGAI_NOTICES.md
 COPY scripts/prefetch-tiktoken-encodings.sh /tmp/prefetch-tiktoken-encodings.sh
 COPY fragai/tokenizer-cache.sha256 /tmp/tokenizer-cache.sha256

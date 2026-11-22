@@ -19,6 +19,11 @@ Linked Go and MCP CLI dependency notices are collected into /licenses during
 the build. Debian package copyright files remain in /usr/share/doc and Python
 distribution notices remain in their installed dist-info directories. Browser,
 Bun and UV components retain their respective upstream licensing terms.
+Explicit Bun 1.3.11 and UV 0.11.32 notices are included under
+`third_party/licenses` in source and `/licenses/runtime` in the images, from
+https://github.com/oven-sh/bun/blob/bun-v1.3.11/LICENSE.md and
+https://github.com/astral-sh/uv/tree/0.11.32. Bun's notice identifies its bundled
+JavaScriptCore/WebKit and other third-party components and source links.
 
 Original upstream publishing automation and packaging are archived under
 third_party/upstream-automation and third_party/upstream-packaging. They are
