@@ -8,7 +8,7 @@
 bin/*
 .nanobot/*
 workflows/*
-nanobot
+/nanobot
 releases/*
 examples/customer/tools/travel2.sqlite
 *.db

@@ -1,0 +1,19 @@
+.claude/
+.DS_Store
+.cursorrules
+.envrc
+.idea
+.venv
+.vscode
+bin/*
+.nanobot/*
+workflows/*
+nanobot
+releases/*
+examples/customer/tools/travel2.sqlite
+*.db
+/workspace
+
+# Ignore zed files
+.zed/
+__debug_*

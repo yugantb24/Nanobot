@@ -4,6 +4,7 @@ ARG GO_IMAGE=golang:1.26.5-trixie@sha256:f1a132429b98724a904e9b3bdbaed399d8f9232
 ARG BUN_IMAGE=oven/bun:1.3.11@sha256:0733e50325078969732ebe3b15ce4c4be5082f18c4ac1a0f0ca4839c2e4e42a7
 ARG DEBIAN_IMAGE=debian:trixie-slim@sha256:a72b4433de1cf7d6bae0c4cee74d0547f58601a643b3375f070c51600d63b6b2
 ARG UV_IMAGE=ghcr.io/astral-sh/uv:0.11.32@sha256:df4cae8f3a96d175e2e5f992e597550000edbe78fdc2594d5cd8de1a217f504c
+ARG WOLFI_IMAGE=cgr.dev/chainguard/wolfi-base@sha256:be019c1c74fe69204a42c4e10bc4d886a49bf5403ffa74374ef7baa408fc9a26
 
 FROM ${GO_IMAGE} AS go-build
 ENV GOMAXPROCS=2
@@ -63,7 +64,30 @@ WORKDIR /home/nanobot
 EXPOSE 8080
 VOLUME ["/data"]
 
-FROM tools AS cli
+FROM ${WOLFI_IMAGE} AS cli-tools
+RUN apk update && apk upgrade --no-cache && apk add --no-cache \
+      bash git curl "libnghttp2-14>=1.70.0-r0" wget jq gzip xz coreutils findutils grep sed gawk ripgrep poppler-utils
+COPY --from=uv /uv /uvx /usr/bin/
+COPY --from=mcp-cli-build /out/mcp-cli /usr/bin/mcp-cli
+COPY --from=mcp-cli-build /out/licenses/ /licenses/
+COPY LICENSE /licenses/nanobot-APACHE-2.0.txt
+COPY FRAGAI_NOTICES.md /licenses/FRAGAI_NOTICES.md
+COPY scripts/prefetch-tiktoken-encodings.sh /tmp/prefetch-tiktoken-encodings.sh
+COPY fragai/tokenizer-cache.sha256 /tmp/tokenizer-cache.sha256
+ENV TIKTOKEN_CACHE_DIR=/var/cache/tiktoken
+RUN chmod +x /tmp/prefetch-tiktoken-encodings.sh && /tmp/prefetch-tiktoken-encodings.sh && \
+    (cd /var/cache/tiktoken && sha256sum -c /tmp/tokenizer-cache.sha256) && \
+    rm /tmp/prefetch-tiktoken-encodings.sh /tmp/tokenizer-cache.sha256 && \
+    adduser -D -u 1000 -h /home/nanobot -s /bin/bash nanobot && \
+    mkdir -p /data /home/nanobot/.nanobot && chown -R nanobot:nanobot /data /home/nanobot
+ENV HOME=/home/nanobot
+ENV NANOBOT_STATE=/data/nanobot.db
+ENV NANOBOT_RUN_LISTEN_ADDRESS=0.0.0.0:8080
+WORKDIR /home/nanobot
+EXPOSE 8080
+VOLUME ["/data"]
+
+FROM cli-tools AS cli
 ARG VERSION=v0.0.92-fragai.4.4-rc.1
 ARG SOURCE_REVISION=local
 LABEL org.opencontainers.image.title="FragAI Nanobot CLI" \

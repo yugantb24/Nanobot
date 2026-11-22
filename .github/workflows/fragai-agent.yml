@@ -39,7 +39,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node fragai/verify-sources.mjs
+          node fragai/verify-sources.mjs --require-tracked
           version=$(node -p 'JSON.parse(require("fs").readFileSync("fragai/build-inputs.lock.json")).version')
           echo "VERSION=$version" >> "$GITHUB_ENV"
           if [[ "$GITHUB_REF" == refs/tags/* ]]; then
@@ -87,6 +87,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          docker pull --platform linux/${{ matrix.arch }} ghcr.io/obot-platform/nanobot@sha256:7727ed9c1d931a7419afc89a615f368ab7265d25ad1fc8dc9a910ccf21e5005b
+          node fragai/check-cli.mjs fragai-nanobot:review
           docker run --rm --network none fragai-nanobot:review --version
           docker run --rm --network none fragai-nanobot:review run --help
           docker run --rm --network none --entrypoint cat fragai-nanobot-agent:review /usr/local/share/fragai/build-info.txt \

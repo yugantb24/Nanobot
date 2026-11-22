@@ -1585,6 +1585,7 @@
   "originalFiles": {
     "go.mod": "third_party/upstream-packaging/nanobot/go.mod",
     "go.sum": "third_party/upstream-packaging/nanobot/go.sum",
-    ".github/CODEOWNERS": "third_party/upstream-automation/nanobot/CODEOWNERS"
+    ".github/CODEOWNERS": "third_party/upstream-automation/nanobot/CODEOWNERS",
+    ".gitignore": "third_party/upstream-packaging/nanobot/.gitignore"
   }
 }
