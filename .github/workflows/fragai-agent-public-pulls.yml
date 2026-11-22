@@ -1,0 +1,86 @@
+name: FragAI Nanobot public images
+
+on:
+  push:
+    branches: [main, 'fragai/**']
+    paths:
+      - .github/workflows/fragai-agent-public-pulls.yml
+      - .github/fragai-agent-publication.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fragai-agent-public-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  public-pull:
+    name: anonymous-agent-pulls (${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-24.04
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24.15.0'
+      - name: Pull all three immutable images without registry credentials
+        shell: bash
+        env:
+          ARCH: ${{ matrix.arch }}
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import { execFileSync } from 'node:child_process';
+          import fs from 'node:fs';
+          import os from 'node:os';
+          import path from 'node:path';
+          const lock = JSON.parse(fs.readFileSync('.github/fragai-agent-publication.json'));
+          const inputs = JSON.parse(fs.readFileSync('fragai/build-inputs.lock.json'));
+          assert.equal(lock.schemaVersion, 1);
+          assert.equal(lock.version, inputs.version);
+          assert.equal(lock.images.length, 3);
+          const platform = `linux/${process.env.ARCH}`;
+          const folder = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), 'fragai-anonymous-'));
+          fs.writeFileSync(path.join(folder, 'config.json'), '{"auths":{}}\n');
+          const result = { version: lock.version, sourceRevision: lock.sourceRevision, platform, registryCredentialsUsed: false, passed: false, images: [] };
+          const docker = args => execFileSync('docker', ['--config', folder, ...args], { encoding: 'utf8', timeout: 600000, maxBuffer: 8*1024*1024, env: { ...process.env, DOCKER_CONFIG: folder } });
+          try {
+            for (const image of lock.images) {
+              assert.match(image.reference, /^ghcr\.io\/yugantb24\/fragai-nanobot(?:-agent(?:-runtime)?)?@sha256:[a-f0-9]{64}$/);
+              const expected = image.platforms[platform];
+              assert.ok(expected);
+              console.log(`Pulling public ${image.name} ${platform}...`);
+              docker(['pull', '--platform', platform, image.reference]);
+              const actual = JSON.parse(docker(['image', 'inspect', image.reference]))[0];
+              assert.equal(actual.Os, 'linux');
+              assert.equal(actual.Architecture, process.env.ARCH);
+              assert.equal(actual.Id, expected.config);
+              assert.equal(actual.Config.Labels['org.opencontainers.image.source'], 'https://github.com/yugantb24/Nanobot');
+              assert.equal(actual.Config.Labels['org.opencontainers.image.revision'], lock.sourceRevision);
+              assert.equal(actual.Config.Labels['org.opencontainers.image.version'], lock.version);
+              result.images.push({ name: image.name, reference: image.reference, manifest: expected.manifest, config: expected.config, anonymousPull: 'passed' });
+              console.log(`Full anonymous pull passed: ${image.name} ${platform}`);
+            }
+            result.passed = true;
+          } catch (error) { result.error = error.message; process.exitCode = 1; }
+          finally {
+            assert.equal(path.dirname(fs.realpathSync(folder)), fs.realpathSync(os.tmpdir()));
+            assert.ok(path.basename(folder).startsWith('fragai-anonymous-'));
+            fs.rmSync(folder, { recursive: true });
+            console.log('FRAGAI_PUBLIC_PULL_RESULT=' + JSON.stringify(result));
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `### Anonymous Nanobot pulls (${platform})\n\nResult: ${result.passed}\n\n` + result.images.map(i => `- ${i.name}: passed (${i.config})`).join('\n') + '\n');
+          }
+          NODE
