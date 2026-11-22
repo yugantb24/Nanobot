@@ -48,6 +48,8 @@ the agent's linked `BaseImage`. `--target agent-runtime` builds its browser/offi
 dependencies without the Go executable. Release automation builds the exact same
 source for native AMD64 and ARM64 and gates publication on compatibility checks.
 Image labels record the owned repository, source commit and upstream revision.
+The CLI sandbox retains its original Wolfi package manager and UV 0.12.1;
+the separate Debian agent retains UV 0.11.32, matching their actual baselines.
 
 ## Publication and platform compatibility
 
